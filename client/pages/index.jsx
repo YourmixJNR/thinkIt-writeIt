@@ -1,11 +1,11 @@
 import Home from "../components/Home";
-import Layouts from "../components/layouts";
+import Layout from "../components/layout";
 
 const index = () => {
   return (
-    <Layouts>
+    <Layout>
       <Home />
-    </Layouts>
+    </Layout>
   );
 };
 
