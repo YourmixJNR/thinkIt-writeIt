@@ -18,14 +18,35 @@ import {
 
 const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = React.useRef();
-  return (
-    <Flex as={"header"} justify={"space-between"}>
-      <Image src={image.SiteLogo} alt="site logo" width={100} />
 
-      <Box ref={btnRef} onClick={onOpen} bg={"red"} p={4} display={"flex"}>
-        Menu!
-      </Box>
+  const btnRef = React.useRef();
+
+  return (
+    <Flex
+      as={"header"}
+      alignItems={"center"}
+      justify={"space-between"}
+      p={"1rem"}
+      bg={"white"}
+      sm
+    >
+      <Image src={image.SiteLogo} alt="site logo" width={60} />
+
+      <Button
+        ref={btnRef}
+        onClick={onOpen}
+        bg={"#feb42b"}
+        p={2}
+        display={"flex"}
+        fontSize={"1rem"}
+        fontWeight={"semibold"}
+        textColor={"white"}
+        borderRadius={0}
+        colorScheme="none"
+      >
+        Open Me .!
+      </Button>
+
       <Drawer
         isOpen={isOpen}
         placement="right"
@@ -34,14 +55,26 @@ const Header = () => {
       >
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerCloseButton />
-          <Nav />
-          <DrawerFooter>
-            <Button variant="outline" mr={3} onClick={onClose}>
-              Cancel
-            </Button>
-            <Button colorScheme="blue">Save</Button>
-          </DrawerFooter>
+          <Flex height={"100%"} justifyContent={"space-between"} flexDirection={"column"}>
+            <Box> Hello</Box>
+            <Box>Hi</Box>
+            <Box>Footer</Box>
+          </Flex>
+          {/* <DrawerCloseButton
+            bg={"#feb42b"}
+            p={2}
+            display={"flex"}
+            fontSize={"1rem"}
+            fontWeight={"semibold"}
+            textColor={"white"}
+            borderRadius={0}
+            // width={"100%"}
+            colorScheme="none"
+          >
+            Hello Close
+          </DrawerCloseButton>
+          <DrawerHeader>Hi</DrawerHeader> */}
+          {/* <Nav /> */}
         </DrawerContent>
       </Drawer>
     </Flex>
