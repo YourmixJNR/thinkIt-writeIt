@@ -32,51 +32,55 @@ const Header = () => {
     >
       <Image src={image.SiteLogo} alt="site logo" width={60} />
 
-      <Button
-        ref={btnRef}
-        onClick={onOpen}
-        bg={"#feb42b"}
-        p={2}
-        display={"flex"}
-        fontSize={"1rem"}
-        fontWeight={"semibold"}
-        textColor={"white"}
-        borderRadius={0}
-        colorScheme="none"
-      >
-        Open Me .!
-      </Button>
+      <Box display={{ md: "none" }}>
+        <Button
+          ref={btnRef}
+          onClick={onOpen}
+          bg={"#feb42b"}
+          p={2}
+          display={"flex"}
+          fontSize={"1rem"}
+          fontWeight={"semibold"}
+          textColor={"white"}
+          borderRadius={0}
+          colorScheme="none"
+        >
+          Open Me .!
+        </Button>
 
-      <Drawer
-        isOpen={isOpen}
-        placement="right"
-        onClose={onClose}
-        finalFocusRef={btnRef}
-      >
-        <DrawerOverlay />
-        <DrawerContent>
-          <Flex height={"100%"} justifyContent={"space-between"} flexDirection={"column"}>
-            <Box> Hello</Box>
-            <Box>Hi</Box>
-            <Box>Footer</Box>
-          </Flex>
-          {/* <DrawerCloseButton
-            bg={"#feb42b"}
-            p={2}
-            display={"flex"}
-            fontSize={"1rem"}
-            fontWeight={"semibold"}
-            textColor={"white"}
-            borderRadius={0}
-            // width={"100%"}
-            colorScheme="none"
-          >
-            Hello Close
-          </DrawerCloseButton>
-          <DrawerHeader>Hi</DrawerHeader> */}
-          {/* <Nav /> */}
-        </DrawerContent>
-      </Drawer>
+        <Drawer
+          isOpen={isOpen}
+          placement="right"
+          onClose={onClose}
+          finalFocusRef={btnRef}
+        >
+          <DrawerOverlay />
+          <DrawerContent>
+            <DrawerCloseButton
+              top={"30px"}
+              width={"none"}
+              height={"none"}
+              ref={btnRef}
+              onClick={onOpen}
+              bg={"#feb42b"}
+              p={2}
+              display={"flex"}
+              fontSize={"1rem"}
+              fontWeight={"semibold"}
+              textColor={"white"}
+              borderRadius={0}
+              colorScheme="none"
+            >
+              Close Me .!
+            </DrawerCloseButton>
+            <DrawerHeader paddingTop={"5rem"}>Hi</DrawerHeader>
+            <DrawerBody>
+              <Nav />
+            </DrawerBody>
+            <DrawerFooter>Log Out</DrawerFooter>
+          </DrawerContent>
+        </Drawer>
+      </Box>
     </Flex>
   );
 };
