@@ -15,9 +15,9 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
-  useColorModeValue,
 } from "@chakra-ui/react";
 import Switch from "../switch/Switch";
+import { RiLogoutBoxLine } from "react-icons/ri";
 
 const Header = () => {
   const { isMobile } = useScreenSize();
@@ -32,7 +32,6 @@ const Header = () => {
       alignItems={"center"}
       justify={"space-between"}
       p={"1rem"}
-      bg={useColorModeValue("white", "")}
     >
       <Image src={image.SiteLogo} alt="site logo" width={60} />
 
@@ -51,7 +50,7 @@ const Header = () => {
             fontSize={"1rem"}
             fontWeight={"semibold"}
             textColor={"white"}
-            borderRadius={0}
+            borderRadius={'0.2rem'}
             colorScheme="none"
           >
             Open Me .!
@@ -78,7 +77,7 @@ const Header = () => {
                 fontSize={"1rem"}
                 fontWeight={"semibold"}
                 textColor={"white"}
-                borderRadius={0}
+                borderRadius={'0.2rem'}
                 colorScheme="none"
               >
                 Close Me .!
@@ -102,10 +101,13 @@ const Header = () => {
                   fontSize={"1rem"}
                   fontWeight={"semibold"}
                   textColor={"white"}
-                  borderRadius={0}
+                  borderRadius={'0.2rem'}
+                  gap={1}
+                  alignItems={"center"}
                   colorScheme="none"
                 >
-                  Log Out .!
+                  <RiLogoutBoxLine />
+                  <Box as="span"> Log Out .!</Box>
                 </Box>
               </DrawerFooter>
             </DrawerContent>
