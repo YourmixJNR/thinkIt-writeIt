@@ -25,8 +25,8 @@ const Switch = () => {
         as="span"
         bg={toggleColorMode && colorMode === "light" ? "dark" : ""}
         color={"light"}
-        p={'0.2rem'}
-        borderRadius={'0.2rem'}
+        p={"0.2rem"}
+        borderRadius={"0.2rem"}
       >
         <CiLight />
       </Box>
@@ -34,13 +34,11 @@ const Switch = () => {
         as="span"
         bg={toggleColorMode && colorMode === "light" ? "" : "light"}
         color={"dark"}
-        p={'0.2rem'}
-        borderRadius={'0.2rem'}
+        p={"0.2rem"}
+        borderRadius={"0.2rem"}
       >
         <CiDark />
       </Box>
-
-      {/* {toggleColorMode && colorMode === "light" ? <CiLight /> : <CiDark />} */}
     </Flex>
   );
 };

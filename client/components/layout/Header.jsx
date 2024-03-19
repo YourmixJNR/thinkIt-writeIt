@@ -32,6 +32,8 @@ const Header = () => {
       alignItems={"center"}
       justify={"space-between"}
       p={"1rem"}
+      borderBottom={"1px"}
+      borderBottomColor={"gray.200"}
     >
       <Image src={image.SiteLogo} alt="site logo" width={60} />
 
