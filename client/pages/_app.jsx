@@ -1,12 +1,9 @@
-// pages/_app.js
-import { ChakraProvider } from "@chakra-ui/react";
+import { Chakra } from "../src/Chakra";
 
-function MyApp({ Component, pageProps }) {
+export default function App({ Component, pageProps }) {
   return (
-    <ChakraProvider>
+    <Chakra cookies={pageProps.cookies}>
       <Component {...pageProps} />
-    </ChakraProvider>
+    </Chakra>
   );
 }
-
-export default MyApp;

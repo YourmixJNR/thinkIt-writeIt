@@ -1,19 +1,27 @@
 import React from "react";
 import links from "./links";
 import Link from "next/link";
+import {Box} from "@chakra-ui/react"
 
-const Nav = () => {
+const Nav = ({customStyles}) => {
+  
+  const myStyle = {
+    display: "flex",
+    alignItems: "center",
+    gap: 5,
+  }
+
  return (
-    <nav>
+    <Box as="nav" style={customStyles}>
       {links.map(({ name, icon, path }, index) => {
         return (
-          <Link href={path} key={index}>
+          <Link href={path} key={index}  style={myStyle}>
             <span>{icon}</span>
-            {name}
+            <span>{name}</span>
           </Link>
         );
       })}
-    </nav>
+    </Box>
  );
 };
 
