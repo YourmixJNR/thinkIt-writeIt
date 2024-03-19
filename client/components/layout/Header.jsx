@@ -3,8 +3,6 @@ import Image from "next/image";
 import Nav from "../navigation/Nav";
 import image from "../constant/image";
 import { useScreenSize } from "../../hooks/useScreenSize";
-import { CiLight } from "react-icons/ci";
-import { CiDark } from "react-icons/ci";
 import {
   Flex,
   Box,
@@ -17,13 +15,11 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
-  useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
+import Switch from "../switch/Switch";
 
 const Header = () => {
-  const { toggleColorMode } = useColorMode();
-
   const { isMobile } = useScreenSize();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -36,14 +32,11 @@ const Header = () => {
       alignItems={"center"}
       justify={"space-between"}
       p={"1rem"}
-      bg={useColorModeValue("brand.100", "brand.900")}
+      bg={useColorModeValue("white", "")}
     >
       <Image src={image.SiteLogo} alt="site logo" width={60} />
 
-      <Flex onClick={toggleColorMode}>
-        <CiLight />
-        <CiDark />
-      </Flex>
+      <Switch />
 
       {!isMobile ? (
         <Nav customStyles={{ display: "flex", gap: 50 }} />
@@ -52,7 +45,7 @@ const Header = () => {
           <Button
             ref={btnRef}
             onClick={onOpen}
-            bg={"#feb42b"}
+            bg={"customYellow"}
             p={2}
             display={"flex"}
             fontSize={"1rem"}
@@ -79,7 +72,7 @@ const Header = () => {
                 height={"none"}
                 ref={btnRef}
                 onClick={onOpen}
-                bg={"#feb42b"}
+                bg={"customYellow"}
                 p={2}
                 display={"flex"}
                 fontSize={"1rem"}
@@ -103,7 +96,7 @@ const Header = () => {
               <DrawerFooter>
                 <Box
                   ref={btnRef}
-                  bg={"#f66935"}
+                  bg={"customOrange"}
                   p={2}
                   display={"flex"}
                   fontSize={"1rem"}
