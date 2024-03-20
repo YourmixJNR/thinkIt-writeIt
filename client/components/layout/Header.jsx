@@ -52,7 +52,7 @@ const Header = () => {
             fontSize={"1rem"}
             fontWeight={"semibold"}
             textColor={"white"}
-            borderRadius={'0.2rem'}
+            borderRadius={"0.2rem"}
             colorScheme="none"
           >
             Open Me .!
@@ -79,7 +79,7 @@ const Header = () => {
                 fontSize={"1rem"}
                 fontWeight={"semibold"}
                 textColor={"white"}
-                borderRadius={'0.2rem'}
+                borderRadius={"0.2rem"}
                 colorScheme="none"
               >
                 Close Me .!
@@ -103,7 +103,7 @@ const Header = () => {
                   fontSize={"1rem"}
                   fontWeight={"semibold"}
                   textColor={"white"}
-                  borderRadius={'0.2rem'}
+                  borderRadius={"0.2rem"}
                   gap={1}
                   alignItems={"center"}
                   colorScheme="none"

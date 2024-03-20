@@ -1,13 +1,7 @@
 import React from "react";
 import { CiLight } from "react-icons/ci";
 import { CiDark } from "react-icons/ci";
-import {
-  toggleColorMode,
-  colorMode,
-  useColorMode,
-  Flex,
-  Box,
-} from "@chakra-ui/react";
+import { useColorMode, Flex, Box } from "@chakra-ui/react";
 
 const Switch = () => {
   const { colorMode, toggleColorMode } = useColorMode();

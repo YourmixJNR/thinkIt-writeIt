@@ -15,13 +15,19 @@ const CustomInput = ({
   isInvalid,
   value,
   onChange,
+  placeholder,
   helperValue,
   errorValue,
 }) => {
   return (
     <FormControl isRequired={isRequired} isInvalid={isInvalid}>
       <FormLabel>{label}</FormLabel>
-      <Input value={value} type={type} onChange={onChange} />
+      <Input
+        value={value}
+        type={type}
+        onChange={onChange}
+        placeholder={placeholder}
+      />
       <FormHelperText>{helperValue}</FormHelperText>
       <FormErrorMessage>{errorValue}</FormErrorMessage>
     </FormControl>
@@ -29,12 +35,13 @@ const CustomInput = ({
 };
 
 CustomInput.propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   type: PropTypes.string.isRequired,
   isRequired: PropTypes.bool,
   isRequired: PropTypes.any,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string.isRequired,
   helperValue: PropTypes.node,
   errorValue: PropTypes.node,
 };
