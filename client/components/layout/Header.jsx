@@ -2,10 +2,12 @@ import React from "react";
 import Image from "next/image";
 import Nav from "../navigation/Nav";
 import image from "../constant/image";
+import NextLink from "next/link";
 import { useScreenSize } from "../../hooks/useScreenSize";
 import {
   Flex,
   Box,
+  Link,
   Button,
   useDisclosure,
   Drawer,
@@ -27,11 +29,7 @@ const Header = () => {
   const btnRef = React.useRef();
 
   return (
-    <Box
-      as={"header"}
-      borderBottom={"1px"}
-      borderBottomColor={"gray.200"}
-    >
+    <Box as={"header"} borderBottom={"1px"} borderBottomColor={"gray.200"}>
       <Flex
         maxW={"1440px"}
         m={"auto"}
@@ -40,7 +38,15 @@ const Header = () => {
         px={{ base: "1rem", lg: "5rem" }}
         py={"1rem"}
       >
-        <Image src={image.SiteLogo} alt="site logo" width={60} />
+        <Link
+          as={NextLink}
+          href={"/"}
+          _hover={{
+            textDecoration: "none",
+          }}
+        >
+          <Image src={image.SiteLogo} alt="site logo" width={60} />
+        </Link>
 
         <Switch />
 

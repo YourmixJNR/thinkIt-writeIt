@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Button } from "@chakra-ui/react";
 
-const CustomButton = ({ buttonText, isLoading, loadingText }) => {
+const CustomButton = ({ buttonText, isLoading, loadingText, type }) => {
   return (
     <Button
       isLoading={isLoading}
@@ -15,6 +15,7 @@ const CustomButton = ({ buttonText, isLoading, loadingText }) => {
       textColor={"white"}
       borderRadius={"0.2rem"}
       colorScheme="none"
+      type={type}
     >
       {buttonText}
     </Button>

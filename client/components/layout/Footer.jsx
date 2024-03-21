@@ -30,9 +30,13 @@ const Footer = () => {
           <SocialMediaIcons />
         </Flex>
       </Flex>
-      <Box py={"1rem"} textAlign={"center"}  borderTop={"1px"}
-      borderTopColor={"gray.300"} >
-      built with ❤️ from YourmixJNR
+      <Box
+        py={"1rem"}
+        textAlign={"center"}
+        borderTop={"1px"}
+        borderTopColor={"gray.300"}
+      >
+        built with ❤️ from YourmixJNR
       </Box>
     </Box>
   );
