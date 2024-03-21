@@ -29,5 +29,8 @@ const icons = [
     link: "https://twitter.com/YourmixJNR",
     icon: <FaTwitter />,
   },
-  { link: "https://www.linkedin.com/in/michael-victor-57615925a/", icon: <FaLinkedin /> },
+  {
+    link: "https://www.linkedin.com/in/michael-victor-57615925a/",
+    icon: <FaLinkedin />,
+  },
 ];
