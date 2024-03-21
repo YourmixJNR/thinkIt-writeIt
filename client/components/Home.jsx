@@ -10,6 +10,7 @@ const Home = () => {
         align={"center"}
         gap={"2rem"}
         flexDirection={{ base: "column", lg: "row" }}
+        pb={"2rem"}
       >
         <Flex flexDirection={"column"} gap={"1rem"}>
           <Heading as={"h1"}>We Provide Solutions for Writers</Heading>

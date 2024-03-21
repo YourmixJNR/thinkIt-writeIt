@@ -18,16 +18,16 @@ export default SocialMediaIcons;
 
 const icons = [
   {
-    link: "https://www.facebook.com/",
+    link: "https://www.facebook.com/victor.alagbe.982/",
     icon: <FaFacebook />,
   },
   {
-    link: "https://www.instagram.com/",
+    link: "https://www.instagram.com/yourmixjnr",
     icon: <FaInstagram />,
   },
   {
     link: "https://twitter.com/YourmixJNR",
     icon: <FaTwitter />,
   },
-  { link: "https://www.linkedin.com/company/pescademy/", icon: <FaLinkedin /> },
+  { link: "https://www.linkedin.com/in/michael-victor-57615925a/", icon: <FaLinkedin /> },
 ];
