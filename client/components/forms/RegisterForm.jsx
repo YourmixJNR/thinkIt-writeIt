@@ -6,10 +6,14 @@ import CustomButton from "../ui/CustomButton";
 import PasswordInput from "../ui/PasswordInput";
 
 const RegisterForm = () => {
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
+  };
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
@@ -22,6 +26,7 @@ const RegisterForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.table({ username, email, password });
   };
 
   return (
@@ -33,6 +38,14 @@ const RegisterForm = () => {
         <Box borderRadius={"1rem"} p={"0.5rem"}>
           <form onSubmit={handleSubmit}>
             <Flex flexDirection={"column"} gap={"1rem"}>
+              <CustomInput
+                label={"Username"}
+                type="text"
+                isRequired={true}
+                placeholder="Enter Username"
+                value={username}
+                onChange={handleUsernameChange}
+              />
               <CustomInput
                 label={"Email"}
                 type="email"

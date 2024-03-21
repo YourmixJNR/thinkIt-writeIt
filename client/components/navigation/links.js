@@ -8,4 +8,4 @@ const links = [
     { name: "Login", icon: <RiLoginBoxLine />, path: "/login" },
 ]
 
-export default linksp
+export default links
