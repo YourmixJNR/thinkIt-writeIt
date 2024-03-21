@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import { Box, Flex } from "@chakra-ui/react";
-import CustomInput from "../CustomInput";
-import CustomButton from "../CustomButton";
+import { Box} from "@chakra-ui/react";
+import CustomInput from "../ui/CustomInput";
+import CustomButton from "../ui/CustomButton";
 
 const HomeForm = () => {
   const [email, setEmail] = useState("");
@@ -22,7 +22,7 @@ const HomeForm = () => {
         helperValue={"Request a Demo Now .!"}
       />
      </Box>
-      <Box flexShrink={0} pt={{sm: "0" , md:"0.5rem"}}>
+      <Box flexShrink={0}>
         <CustomButton buttonText={"Start Now"} />
       </Box>
     </Box>

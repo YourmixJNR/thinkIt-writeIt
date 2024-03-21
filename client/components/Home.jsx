@@ -16,7 +16,7 @@ const Home = () => {
           <Text>
             Think it Write it is a conglomerate of content writers. We help you
             promote your work for free, and give organic reach to your social
-            media handle
+            media handle.
           </Text>
           <HomeForm />
         </Flex>

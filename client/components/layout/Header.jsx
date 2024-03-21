@@ -27,99 +27,102 @@ const Header = () => {
   const btnRef = React.useRef();
 
   return (
-    <Flex
+    <Box
       as={"header"}
-      maxW={"1440px"}
-      m={"auto"}
-      alignItems={"center"}
-      justify={"space-between"}
-      px={{ base: "1rem", lg: "5rem" }}
-      py={"1rem"}
       borderBottom={"1px"}
       borderBottomColor={"gray.200"}
     >
-      <Image src={image.SiteLogo} alt="site logo" width={60} />
+      <Flex
+        maxW={"1440px"}
+        m={"auto"}
+        alignItems={"center"}
+        justify={"space-between"}
+        px={{ base: "1rem", lg: "5rem" }}
+        py={"1rem"}
+      >
+        <Image src={image.SiteLogo} alt="site logo" width={60} />
 
-      <Switch />
+        <Switch />
 
-      {!isMobile ? (
-        <Nav customStyles={{ display: "flex", gap: 50 }} />
-      ) : (
-        <Box>
-          <Button
-            ref={btnRef}
-            onClick={onOpen}
-            bg={"customYellow"}
-            p={2}
-            display={"flex"}
-            fontSize={"1rem"}
-            fontWeight={"semibold"}
-            textColor={"white"}
-            borderRadius={"0.2rem"}
-            colorScheme="none"
-          >
-            Open Me .!
-          </Button>
+        {!isMobile ? (
+          <Nav customStyles={{ display: "flex", gap: 50 }} />
+        ) : (
+          <Box>
+            <Button
+              ref={btnRef}
+              onClick={onOpen}
+              bg={"customYellow"}
+              p={2}
+              display={"flex"}
+              fontSize={"1rem"}
+              fontWeight={"semibold"}
+              textColor={"white"}
+              borderRadius={"0.2rem"}
+              colorScheme="none"
+            >
+              Open Me .!
+            </Button>
 
-          <Drawer
-            isOpen={isOpen}
-            placement="right"
-            onClose={onClose}
-            finalFocusRef={btnRef}
-            display={{ md: "none" }}
-          >
-            <DrawerOverlay />
-            <DrawerContent>
-              <DrawerCloseButton
-                top={"30px"}
-                width={"none"}
-                height={"none"}
-                ref={btnRef}
-                onClick={onOpen}
-                bg={"customYellow"}
-                p={2}
-                display={"flex"}
-                fontSize={"1rem"}
-                fontWeight={"semibold"}
-                textColor={"white"}
-                borderRadius={"0.2rem"}
-                colorScheme="none"
-              >
-                Close Me .!
-              </DrawerCloseButton>
-              <DrawerHeader paddingTop={"5rem"}>Hi @Username</DrawerHeader>
-              <DrawerBody>
-                <Nav
-                  customStyles={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: 6,
-                  }}
-                />
-              </DrawerBody>
-              <DrawerFooter>
-                <Box
+            <Drawer
+              isOpen={isOpen}
+              placement="right"
+              onClose={onClose}
+              finalFocusRef={btnRef}
+              display={{ md: "none" }}
+            >
+              <DrawerOverlay />
+              <DrawerContent>
+                <DrawerCloseButton
+                  top={"30px"}
+                  width={"none"}
+                  height={"none"}
                   ref={btnRef}
-                  bg={"customOrange"}
+                  onClick={onOpen}
+                  bg={"customYellow"}
                   p={2}
                   display={"flex"}
                   fontSize={"1rem"}
                   fontWeight={"semibold"}
                   textColor={"white"}
                   borderRadius={"0.2rem"}
-                  gap={1}
-                  alignItems={"center"}
                   colorScheme="none"
                 >
-                  <RiLogoutBoxLine />
-                  <Box as="span"> Log Out .!</Box>
-                </Box>
-              </DrawerFooter>
-            </DrawerContent>
-          </Drawer>
-        </Box>
-      )}
-    </Flex>
+                  Close Me .!
+                </DrawerCloseButton>
+                <DrawerHeader paddingTop={"5rem"}>Hi @Username</DrawerHeader>
+                <DrawerBody>
+                  <Nav
+                    customStyles={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 6,
+                    }}
+                  />
+                </DrawerBody>
+                <DrawerFooter>
+                  <Box
+                    ref={btnRef}
+                    bg={"customOrange"}
+                    p={2}
+                    display={"flex"}
+                    fontSize={"1rem"}
+                    fontWeight={"semibold"}
+                    textColor={"white"}
+                    borderRadius={"0.2rem"}
+                    gap={1}
+                    alignItems={"center"}
+                    colorScheme="none"
+                  >
+                    <RiLogoutBoxLine />
+                    <Box as="span"> Log Out .!</Box>
+                  </Box>
+                </DrawerFooter>
+              </DrawerContent>
+            </Drawer>
+          </Box>
+        )}
+      </Flex>
+    </Box>
   );
 };
 
