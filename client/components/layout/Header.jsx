@@ -29,9 +29,12 @@ const Header = () => {
   return (
     <Flex
       as={"header"}
+      maxW={"1440px"}
+      m={"auto"}
       alignItems={"center"}
       justify={"space-between"}
-      p={"1rem"}
+      px={{ base: "1rem", lg: "5rem" }}
+      py={"1rem"}
       borderBottom={"1px"}
       borderBottomColor={"gray.200"}
     >

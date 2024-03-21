@@ -5,6 +5,7 @@ import {
   Input,
   FormHelperText,
   FormErrorMessage,
+  useColorMode
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 
@@ -19,6 +20,9 @@ const CustomInput = ({
   helperValue,
   errorValue,
 }) => {
+
+  const {colorMode} = useColorMode();
+
   return (
     <FormControl isRequired={isRequired} isInvalid={isInvalid}>
       <FormLabel>{label}</FormLabel>
@@ -27,6 +31,7 @@ const CustomInput = ({
         type={type}
         onChange={onChange}
         placeholder={placeholder}
+        borderWidth={"2px"}
       />
       <FormHelperText>{helperValue}</FormHelperText>
       <FormErrorMessage>{errorValue}</FormErrorMessage>

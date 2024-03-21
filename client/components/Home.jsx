@@ -5,19 +5,25 @@ import Image from "next/image";
 
 const Home = () => {
   return (
-    <Box as="main" py={"2rem"} px={{ base: "2rem", lg: "8rem" }}>
-      <Flex flexDirection={"column"} gap={"1rem"}>
-        <Heading as={"h1"}>We Provide Solutions for Writers</Heading>
-        <Text>
-          Think it Write it is a conglomerate of content writers. We help you
-          promote your work for free, and give organic reach to your social
-          media handle
-        </Text>
-        <HomeForm />
+    <Box as="section" py={"2rem"} px={{ base: "1rem", lg: "5rem" }}>
+      <Flex
+        align={"center"}
+        gap={"2rem"}
+        flexDirection={{ base: "column", lg: "row" }}
+      >
+        <Flex flexDirection={"column"} gap={"1rem"}>
+          <Heading as={"h1"}>We Provide Solutions for Writers</Heading>
+          <Text>
+            Think it Write it is a conglomerate of content writers. We help you
+            promote your work for free, and give organic reach to your social
+            media handle
+          </Text>
+          <HomeForm />
+        </Flex>
+        <Box>
+          <Image src={image.HomeImage} alt="Hero Image" width={900} />
+        </Box>
       </Flex>
-      <Box>
-        <Image src={image.HomeImage} />
-      </Box>
     </Box>
   );
 };

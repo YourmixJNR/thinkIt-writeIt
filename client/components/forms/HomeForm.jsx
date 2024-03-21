@@ -12,15 +12,17 @@ const HomeForm = () => {
   };
 
   return (
-    <Box display={"flex"} flexDirection={{ base: "column", md: "row" }}>
-      <CustomInput
+    <Box display={"flex"} gap={"1rem"} flexDirection={"column"}>
+     <Box flexShrink={0} w={"100%"} maxW={"500px"}>
+     <CustomInput
         type="email"
         placeholder="Email your address"
         value={email}
         onChange={handleEmailChange}
         helperValue={"Request a Demo Now .!"}
       />
-      <Box flexShrink={0}>
+     </Box>
+      <Box flexShrink={0} pt={{sm: "0" , md:"0.5rem"}}>
         <CustomButton buttonText={"Start Now"} />
       </Box>
     </Box>
