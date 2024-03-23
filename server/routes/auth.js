@@ -1,9 +1,10 @@
-import express, { response } from "express"
+import express from "express"
 
 const router = express.Router()
 
-router.use("/register", (req, res) => {
-    res.send("Register Endpoint")
-})
+// controllers
+import { register } from "../controllers/auth"
+
+router.get("/register", register)
 
 module.exports = router
