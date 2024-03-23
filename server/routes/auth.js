@@ -5,3 +5,5 @@ const router = express.Router()
 router.use("/register", (req, res) => {
     res.send("Register Endpoint")
 })
+
+module.exports = router
