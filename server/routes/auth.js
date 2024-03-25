@@ -6,6 +6,6 @@ const authRoutes = Router()
 // controllers
 import { register } from "../controllers/auth.js"
 
-authRoutes.get("/register", register)
+authRoutes.post("/register", register)
 
 export default authRoutes
