@@ -1,10 +1,11 @@
-import express from "express"
+// import express from "express"
+import { Router } from "express"
 
-const router = express.Router()
+const authRoutes = Router()
 
 // controllers
-import { register } from "../controllers/auth"
+import { register } from "../controllers/auth.js"
 
-router.get("/register", register)
+authRoutes.get("/register", register)
 
-module.exports = router
+export default authRoutes

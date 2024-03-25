@@ -1,8 +1,9 @@
 import express from "express"
 import cors from "cors"
-import { readdirSync } from "fs"
-const morgan = require("morgan")
-require("dotenv").config({ path: './development.env' }); //  Change to 'production.env' when deploying
+import morgan from "morgan"
+import authRoutes from "./routes/auth.js"
+import { configDotenv } from "dotenv"
+configDotenv({path: './development.env'}) //  Change to 'production.env' when deploying
 
 // create express app
 const app = express()
@@ -13,7 +14,7 @@ app.use(express.json())
 app.use(morgan("dev"))
 
 // routes
-readdirSync("./routes").map((r) => app.use("/api", require(`./routes/${r}`)))
+app.use("/api/auth/", authRoutes)
 
 // port 
 const port = process.env.PORT || 8000
