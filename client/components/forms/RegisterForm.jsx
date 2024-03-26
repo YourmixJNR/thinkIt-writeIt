@@ -11,6 +11,7 @@ const RegisterForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [formLoading, setFormLoading] = useState(false);
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -27,6 +28,7 @@ const RegisterForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setFormLoading(true);
     try {
       await axios.post("http://localhost:8000/api/auth/register", {
         username,
@@ -36,16 +38,17 @@ const RegisterForm = () => {
     } catch (error) {
       console.log("Error:", error);
     } finally {
-    clearFormState()
+      clearFormState();
     }
+    setFormLoading(false);
   };
 
-  const clearFormState = () =>{
-    setUsername("")
-    setEmail("")
-    setPassword("")
-    setConfirmPassword("")
-  }
+  const clearFormState = () => {
+    setUsername("");
+    setEmail("");
+    setPassword("");
+    setConfirmPassword("");
+  };
 
   return (
     <Box as="section" py={"2rem"} px={{ base: "1rem", lg: "5rem" }}>
@@ -85,7 +88,11 @@ const RegisterForm = () => {
                 onChange={handleConfirmPassword}
               />
               <Box flexShrink={0}>
-                <CustomButton buttonText={"Submit"} type={"submit"} />
+                <CustomButton
+                  buttonText={"Submit"}
+                  type={"submit"}
+                  isLoading={formLoading}
+                />
               </Box>
             </Flex>
           </form>
