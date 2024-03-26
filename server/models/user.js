@@ -2,7 +2,7 @@ import mongoose from "mongoose"
 import { Schema } from "mongoose"
 
 const userSchema = new Schema({
-    name: {
+    username: {
         type: String,
         trim: true,
         required: true
@@ -28,7 +28,7 @@ const userSchema = new Schema({
         default: "Subscriber",
         enum: ["Subscriber", "Instructor", "Admin"],
     },
-    stripe_account_id: "",
+    stripe_account_id: { type: String },
     stripe_seller: {},
     stripeSession: {},
 }, { timestamps: true })
