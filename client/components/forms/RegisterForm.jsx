@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import axios from "axios";
 import { Box, Flex, Heading } from "@chakra-ui/react";
 import CustomInput from "../ui/CustomInput";
 import CustomButton from "../ui/CustomButton";
@@ -24,10 +25,27 @@ const RegisterForm = () => {
     setConfirmPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.table({ username, email, password });
+    try {
+      await axios.post("http://localhost:8000/api/auth/register", {
+        username,
+        email,
+        password,
+      });
+    } catch (error) {
+      console.log("Error:", error);
+    } finally {
+    clearFormState()
+    }
   };
+
+  const clearFormState = () =>{
+    setUsername("")
+    setEmail("")
+    setPassword("")
+    setConfirmPassword("")
+  }
 
   return (
     <Box as="section" py={"2rem"} px={{ base: "1rem", lg: "5rem" }}>
