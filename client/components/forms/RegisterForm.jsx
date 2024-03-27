@@ -6,6 +6,7 @@ import CustomInput from "../ui/CustomInput";
 import CustomButton from "../ui/CustomButton";
 import PasswordInput from "../ui/PasswordInput";
 import { useCustomToast } from "../../hooks/useCustomToast";
+import { loadEnv } from "../../env/loadEnv";
 
 const RegisterForm = () => {
   const [username, setUsername] = useState("");
@@ -29,11 +30,13 @@ const RegisterForm = () => {
     setConfirmPassword(e.target.value);
   };
 
+  const baseURL = loadEnv.API_URL
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       setFormLoading(true);
-      await axios.post("http://localhost:8000/api/auth/register", {
+      await axios.post(`${baseURL}/auth/register`, {
         username,
         email,
         password,
