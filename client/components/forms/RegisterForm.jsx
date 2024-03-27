@@ -14,7 +14,7 @@ const RegisterForm = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [formLoading, setFormLoading] = useState(false);
 
-  const {success, error} = useCustomToast()
+  const { success, error } = useCustomToast();
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -31,21 +31,21 @@ const RegisterForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormLoading(true);
     try {
+      setFormLoading(true);
       await axios.post("http://localhost:8000/api/auth/register", {
         username,
         email,
         password,
       });
-      success("Working Right ?")
-    } catch (error) {
-      console.log("Error:", error);
-      error(error.response.data)
-    } finally {
+      success("Registration Successful");
       clearFormState();
+      setFormLoading(false);
+    } catch (err) {
+      console.log("Error:", err);
+      error(err.response.data);
+      setFormLoading(false);
     }
-    setFormLoading(false);
   };
 
   const clearFormState = () => {
