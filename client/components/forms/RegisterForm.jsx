@@ -5,6 +5,7 @@ import { Box, Flex, Heading, useToast } from "@chakra-ui/react";
 import CustomInput from "../ui/CustomInput";
 import CustomButton from "../ui/CustomButton";
 import PasswordInput from "../ui/PasswordInput";
+import { useCustomToast } from "../../hooks/useCustomToast";
 
 const RegisterForm = () => {
   const [username, setUsername] = useState("");
@@ -12,6 +13,8 @@ const RegisterForm = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [formLoading, setFormLoading] = useState(false);
+
+  const {success, error} = useCustomToast()
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -35,8 +38,10 @@ const RegisterForm = () => {
         email,
         password,
       });
+      success("Working Right ?")
     } catch (error) {
       console.log("Error:", error);
+      error(error.response.data)
     } finally {
       clearFormState();
     }
