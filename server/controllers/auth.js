@@ -6,7 +6,7 @@ export const register = async (req, res) => {
         const { username, email, password } = req.body;
 
         if (!username || !email) {
-            res.status(400).send("Please provide valid username and email")
+            res.status(400).send("Please provide username and email")
         }
 
         if (!password || password.length < 6) {
