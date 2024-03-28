@@ -36,7 +36,7 @@ const RegisterForm = () => {
     e.preventDefault();
     try {
       setFormLoading(true);
-      await axios.post(`${baseURL}/auth/register`, {
+      await axios.post(`api/auth/register`, {
         username,
         email,
         password,
