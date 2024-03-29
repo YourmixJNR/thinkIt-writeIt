@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import { Box, Flex, Heading } from "@chakra-ui/react";
 import CustomInput from "../ui/CustomInput";
@@ -6,6 +6,7 @@ import CustomButton from "../ui/CustomButton";
 import PasswordInput from "../ui/PasswordInput";
 import axios from "axios";
 import { useCustomToast } from "../../hooks/useCustomToast";
+import { AuthContext } from "../../context/auth/authContext";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -21,12 +22,18 @@ const LoginForm = () => {
 
   const { success, error } = useCustomToast();
 
+  const { state, dispatch } = useContext(AuthContext);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       setLoading(true);
-      await axios.post("api/auth/login", { email, password });
+      const { data } = await axios.post("api/auth/login", { email, password });
+      dispatch({
+        type: "LOGIN",
+        payload: data,
+      });
       success("Login Successfully");
       clearFormState();
       setLoading(false);

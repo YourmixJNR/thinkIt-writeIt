@@ -1,9 +1,14 @@
+import { AuthProvider } from "../context/auth/authContext";
 import { Chakra } from "../src/Chakra";
 
 export default function App({ Component, pageProps }) {
   return (
-    <Chakra cookies={pageProps.cookies}>
-      <Component {...pageProps} />
-    </Chakra>
+    <>
+      <AuthProvider>
+        <Chakra cookies={pageProps.cookies}>
+          <Component {...pageProps} />
+        </Chakra>
+      </AuthProvider>
+    </>
   );
 }
