@@ -4,10 +4,13 @@ import { Box, Flex, Heading } from "@chakra-ui/react";
 import CustomInput from "../ui/CustomInput";
 import CustomButton from "../ui/CustomButton";
 import PasswordInput from "../ui/PasswordInput";
+import axios from "axios";
+import { useCustomToast } from "../../hooks/useCustomToast";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -16,9 +19,29 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const { success, error } = useCustomToast();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    try {
+      setLoading(true);
+      await axios.post("api/auth/login", { email, password });
+      success("Login Successfully");
+      clearFormState();
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+      error(err.response.data);
+      setLoading(false);
+    }
   };
+
+  const clearFormState = () => {
+    setEmail("");
+    setPassword("");
+  };
+
   return (
     <Box as="section" py={"2rem"} px={{ base: "1rem", lg: "5rem" }}>
       <Box w={"100%"} maxW={"550px"} m={"auto"}>
@@ -43,7 +66,11 @@ const LoginForm = () => {
                 onChange={handlePasswordChange}
               />
               <Box flexShrink={0}>
-                <CustomButton buttonText={"Submit"} type={"submit"} />
+                <CustomButton
+                  buttonText={"Submit"}
+                  type={"submit"}
+                  isLoading={loading}
+                />
               </Box>
             </Flex>
           </form>

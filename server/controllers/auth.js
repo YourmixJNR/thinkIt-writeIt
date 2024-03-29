@@ -1,5 +1,11 @@
 import User from "../models/user.js";
 import { hashPassword, comparePassword } from "../utils/auth.js";
+import jwt from "jsonwebtoken"
+
+// Generate a JWT
+const generateToken = (id) => {
+    return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "7d" })
+}
 
 export const register = async (req, res) => {
     try {
@@ -33,4 +39,26 @@ export const register = async (req, res) => {
     } catch (error) {
         return res.status(400).send("Error. Try again")
     }
-} 
+}
+
+export const login = async (req, res) => {
+    try {
+        const { email, password } = req.body
+        // Check db for email
+        const user = await User.findOne({ email })
+        if (!user) return res.status(400).send("No user found")
+        // Check password match
+        const match = await comparePassword(password, user.password)
+        const token = generateToken(user._id)
+        user.password = undefined
+
+        res.cookie("token", token, {
+            httpOnly: true,
+        })
+        res.json(user)
+    } catch (err) {
+        console.log(err)
+        return res.status(400).send("Error. Try again")
+    }
+}
+

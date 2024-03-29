@@ -1,19 +1,19 @@
 import React from "react";
 import { useState } from "react";
+import NextLink from "next/link";
 import axios from "axios";
-import { Box, Flex, Heading, useToast } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text, Link } from "@chakra-ui/react";
 import CustomInput from "../ui/CustomInput";
 import CustomButton from "../ui/CustomButton";
 import PasswordInput from "../ui/PasswordInput";
 import { useCustomToast } from "../../hooks/useCustomToast";
-import { loadEnv } from "../../env/loadEnv";
 
 const RegisterForm = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [formLoading, setFormLoading] = useState(false);
+  const [loading, setIsLoading] = useState(false);
 
   const { success, error } = useCustomToast();
 
@@ -30,12 +30,10 @@ const RegisterForm = () => {
     setConfirmPassword(e.target.value);
   };
 
-  const baseURL = loadEnv.API_URL
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      setFormLoading(true);
+      setIsLoading(true);
       await axios.post(`api/auth/register`, {
         username,
         email,
@@ -43,11 +41,11 @@ const RegisterForm = () => {
       });
       success("Registration Successful");
       clearFormState();
-      setFormLoading(false);
+      setIsLoading(false);
     } catch (err) {
       console.log("Error:", err);
       error(err.response.data);
-      setFormLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -99,12 +97,18 @@ const RegisterForm = () => {
                 <CustomButton
                   buttonText={"Submit"}
                   type={"submit"}
-                  isLoading={formLoading}
+                  isLoading={loading}
                 />
               </Box>
             </Flex>
           </form>
         </Box>
+        <Text textAlign={"center"} py={"1rem"} as={"p"}>
+          Already register .?{" "}
+          <Link as={NextLink} href="/login">
+            Login
+          </Link>
+        </Text>
       </Box>
     </Box>
   );

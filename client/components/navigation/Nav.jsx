@@ -14,7 +14,7 @@ const Nav = ({ customStyles }) => {
             key={index}
             display={"flex"}
             alignItems={"center"}
-            gap={5}
+            gap={2}
             _hover={{
               textDecoration: "none",
             }}
