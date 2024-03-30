@@ -7,6 +7,8 @@ import PasswordInput from "../ui/PasswordInput";
 import axios from "axios";
 import { useCustomToast } from "../../hooks/useCustomToast";
 import { AuthContext } from "../../context/auth/authContext";
+import { StorageServices } from "../../utils/storage";
+import { useRouter } from "next/router";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -22,7 +24,10 @@ const LoginForm = () => {
 
   const { success, error } = useCustomToast();
 
+  // state
   const { state, dispatch } = useContext(AuthContext);
+
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,9 +39,11 @@ const LoginForm = () => {
         type: "LOGIN",
         payload: data,
       });
+      StorageServices.setUser(JSON.stringify(data));
       success("Login Successfully");
       clearFormState();
       setLoading(false);
+      router.push("/");
     } catch (err) {
       console.log(err);
       error(err.response.data);

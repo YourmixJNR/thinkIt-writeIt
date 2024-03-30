@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
 import Nav from "../navigation/Nav";
 import image from "../constant/image";
@@ -20,13 +20,28 @@ import {
 } from "@chakra-ui/react";
 import Switch from "../switch/Switch";
 import { RiLogoutBoxLine } from "react-icons/ri";
+import { AuthContext } from "../../context/auth/authContext";
+import { StorageServices } from "../../utils/storage";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 const Header = () => {
   const { isMobile } = useScreenSize();
-
   const { isOpen, onOpen, onClose } = useDisclosure();
-
   const btnRef = React.useRef();
+
+  const { state, dispatch } = useContext(AuthContext);
+
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    dispatch({
+      type: "LOGOUT",
+    });
+    StorageServices.removeUser();
+    await axios.get("api/auth/logout");
+    router.push("/login");
+  };
 
   return (
     <Box as={"header"} borderBottom={"1px"} borderBottomColor={"gray.200"}>
@@ -120,7 +135,16 @@ const Header = () => {
                     colorScheme="none"
                   >
                     <RiLogoutBoxLine />
-                    <Box as="span"> Log Out .!</Box>
+                    <Box
+                      as="span"
+                      onClick={handleLogout}
+                      _hover={{
+                        cursor: "pointer",
+                      }}
+                    >
+                      {" "}
+                      Log Out .!
+                    </Box>
                   </Box>
                 </DrawerFooter>
               </DrawerContent>
