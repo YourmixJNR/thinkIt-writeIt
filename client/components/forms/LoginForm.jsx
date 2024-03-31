@@ -7,7 +7,7 @@ import PasswordInput from "../ui/PasswordInput";
 import axios from "axios";
 import { useCustomToast } from "../../hooks/useCustomToast";
 import { AuthContext } from "../../context/auth/authContext";
-import { StorageServices } from "../../utils/storage";
+import { StorageServices } from "../../libs/storage";
 import { useRouter } from "next/router";
 
 const LoginForm = () => {
@@ -25,7 +25,7 @@ const LoginForm = () => {
   const { success, error } = useCustomToast();
 
   // state
-  const { state, dispatch } = useContext(AuthContext);
+  const { dispatch } = useContext(AuthContext);
 
   const router = useRouter();
 
@@ -38,8 +38,10 @@ const LoginForm = () => {
       dispatch({
         type: "LOGIN",
         payload: data,
+        isLoggedIn: true
       });
       StorageServices.setUser(JSON.stringify(data));
+      StorageServices.setAuth(JSON.stringify(true))
       success("Login Successfully");
       clearFormState();
       setLoading(false);

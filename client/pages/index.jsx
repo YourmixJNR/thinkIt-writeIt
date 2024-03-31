@@ -1,7 +1,7 @@
 import Home from "../components/Home";
 import Layout from "../components/layout";
 
-const index = () => {
+const Index = () => {
   return (
     <Layout>
       <Home />
@@ -9,6 +9,6 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;
 
 export { getServerSideProps } from "../src/Chakra";

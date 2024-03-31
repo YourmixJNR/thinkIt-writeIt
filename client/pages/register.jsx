@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../components/layout";
 import RegisterForm from "../components/forms/RegisterForm";
 
-const register = () => {
+const Register = () => {
   return (
     <Layout>
       <RegisterForm />
@@ -10,4 +10,4 @@ const register = () => {
   );
 };
 
-export default register;
+export default Register;
