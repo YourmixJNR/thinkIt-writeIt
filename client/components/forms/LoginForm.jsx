@@ -4,11 +4,11 @@ import { Box, Flex, Heading } from "@chakra-ui/react";
 import CustomInput from "../ui/CustomInput";
 import CustomButton from "../ui/CustomButton";
 import PasswordInput from "../ui/PasswordInput";
-import axios from "axios";
 import { useCustomToast } from "../../hooks/useCustomToast";
 import { AuthContext } from "../../context/auth/authContext";
 import { StorageServices } from "../../libs/storage";
 import { useRouter } from "next/router";
+import { useApiClient } from "../../hooks/useApiClient";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -22,6 +22,8 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
+  const apiClient  = useApiClient();
+
   const { success, error } = useCustomToast();
 
   // state
@@ -34,14 +36,14 @@ const LoginForm = () => {
 
     try {
       setLoading(true);
-      const { data } = await axios.post("api/auth/login", { email, password });
+      const { data } = await apiClient.post("/auth/login", { email, password });
       dispatch({
         type: "LOGIN",
         payload: data,
-        isLoggedIn: true
+        isLoggedIn: true,
       });
       StorageServices.setUser(JSON.stringify(data));
-      StorageServices.setAuth(JSON.stringify(true))
+      StorageServices.setAuth(JSON.stringify(true));
       success("Login Successfully");
       clearFormState();
       setLoading(false);

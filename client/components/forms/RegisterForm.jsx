@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import NextLink from "next/link";
-import axios from "axios";
+import { useApiClient } from "../../hooks/useApiClient";
 import { Box, Flex, Heading, Text, Link } from "@chakra-ui/react";
 import CustomInput from "../ui/CustomInput";
 import CustomButton from "../ui/CustomButton";
@@ -14,6 +14,8 @@ const RegisterForm = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setIsLoading] = useState(false);
+
+  const apiClient = useApiClient()
 
   const { success, error } = useCustomToast();
 
@@ -34,7 +36,7 @@ const RegisterForm = () => {
     e.preventDefault();
     try {
       setIsLoading(true);
-      await axios.post(`api/auth/register`, {
+      await axios.apiClient(`/auth/register`, {
         username,
         email,
         password,

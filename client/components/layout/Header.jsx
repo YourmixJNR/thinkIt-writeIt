@@ -22,7 +22,7 @@ import Switch from "../switch/Switch";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { AuthContext } from "../../context/auth/authContext";
 import { StorageServices } from "../../libs/storage";
-import axios from "axios";
+import { useApiClient } from "../../hooks/useApiClient";
 import { useRouter } from "next/router";
 
 const Header = () => {
@@ -34,13 +34,15 @@ const Header = () => {
 
   const router = useRouter();
 
+  const apiClient = useApiClient()
+
   const handleLogout = async () => {
     dispatch({
       type: "LOGOUT",
     });
     StorageServices.removeUser();
     StorageServices.removeAuth();
-    await axios.get("api/auth/logout");
+    await apiClient.get("/auth/logout");
     router.push("/login");
   };
 
