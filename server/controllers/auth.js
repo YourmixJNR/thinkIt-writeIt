@@ -49,6 +49,7 @@ export const login = async (req, res) => {
         if (!user) return res.status(400).send("No user found")
         // Check password match
         const match = await comparePassword(password, user.password)
+        if (!match) return res.status(400).send("Incorrect Password")
         const token = generateToken(user._id)
         user.password = undefined
 
