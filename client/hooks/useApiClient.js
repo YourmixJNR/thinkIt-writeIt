@@ -40,7 +40,7 @@ export const useApiClient = () => {
                     StorageServices.removeUser();
                     StorageServices.removeAuth();
                     router.push("/login");
-                    // resolve(data);
+                    resolve(data);
                 }).catch((err) => {
                     console.log("AXIOS INTERCEPTORS ERR", err);
                     reject(err);

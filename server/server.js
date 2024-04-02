@@ -4,6 +4,7 @@ import mongoose from "mongoose"
 import morgan from "morgan"
 import authRoutes from "./routes/auth.js"
 import { configDotenv } from "dotenv"
+import { doubleCsrf } from "csrf-csrf";
 configDotenv({ path: './development.env' }) //  Change to 'production.env' when deploying
 
 // create express app
