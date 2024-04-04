@@ -1,4 +1,5 @@
 // useApiClient.js
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from 'next/router';
 import { loadEnv } from "../env/loadEnv";
@@ -7,6 +8,7 @@ import { useContext } from "react";
 import { StorageServices } from "../libs/storage";
 
 export const useApiClient = () => {
+    const [csrfToken, setCsrfToken] = useState(null)
 
     const { dispatch } = useContext(AuthContext)
 
@@ -19,10 +21,24 @@ export const useApiClient = () => {
         );
     }
 
+    const getCsrfToken = async () => {
+        try {
+            const { data } = await axios.get(`${API_ENDPOINT}/csrf-token`);
+            setCsrfToken(data.csrfToken)
+        } catch (error) {
+            console.error("Error fetching CSRF token:", error);
+        }
+    };
+
+    useEffect(() => {
+        getCsrfToken();
+    }, []);
+
     const apiClient = axios.create({
         baseURL: API_ENDPOINT,
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "_csrf": "csrfToken"
         }
     });
 
