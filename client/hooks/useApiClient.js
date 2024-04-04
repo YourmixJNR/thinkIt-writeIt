@@ -32,13 +32,13 @@ export const useApiClient = () => {
 
     useEffect(() => {
         getCsrfToken();
-    }, []);
+    }, [csrfToken]);
 
     const apiClient = axios.create({
         baseURL: API_ENDPOINT,
         headers: {
             "Content-Type": "application/json",
-            "_csrf": "csrfToken"
+            "_csrf": csrfToken
         }
     });
 

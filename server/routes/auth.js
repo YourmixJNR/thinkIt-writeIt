@@ -1,11 +1,11 @@
 // import express from "express"
 import { Router } from "express"
+import { requireSignIn } from "../middlewares/authMiddleware.js"
 
 const authRoutes = Router()
 
 // controllers
 import { register, login, logout, currentUser } from "../controllers/auth.js"
-import { requireSignIn } from "../middlewares/authMiddleware.js"
 
 authRoutes.post("/register", register)
 authRoutes.post("/login", login)

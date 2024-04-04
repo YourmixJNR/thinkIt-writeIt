@@ -1,6 +1,7 @@
-import { Text, Flex, Box, Heading } from "@chakra-ui/react";
+import { Text, Link, Flex, Box, Heading } from "@chakra-ui/react";
 import HomeForm from "./forms/HomeForm";
 import image from "./constant/image";
+import NextLink from "next/link";
 import Image from "next/image";
 
 const Home = () => {
@@ -19,6 +20,15 @@ const Home = () => {
             promote your work for free, and give organic reach to your social
             media handle.
           </Text>
+          <Link
+            as={NextLink}
+            href={"/user"}
+            _hover={{
+              textDecoration: "none",
+            }}
+          >
+            Hello
+          </Link>
           <HomeForm />
         </Flex>
         <Box>
