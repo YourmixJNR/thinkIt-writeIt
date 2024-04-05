@@ -32,7 +32,7 @@ const {
     getSecret: () => "Secret",
     cookieName: "_csrf",
     size: 64,
-    getTokenFromRequest: (req) => req.headers["_csrf"],
+    getTokenFromRequest: (req) => req.cookies["_csrf"],
 });
 
 // apply middleware

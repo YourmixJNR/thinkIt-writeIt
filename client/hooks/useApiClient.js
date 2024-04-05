@@ -48,21 +48,21 @@ export const useApiClient = () => {
     }, function (error) {
         // Do something with response error
         let res = error.response;
-        if (res.status === 401 && res.config && !res.config.__isRetryRequest) {
-            return new Promise((resolve, reject) => {
-                axios.get(`${API_ENDPOINT}/auth/logout`).then((data) => {
-                    console.log("/401 error > logout");
-                    dispatch({ type: "LOGOUT" })
-                    StorageServices.removeUser();
-                    StorageServices.removeAuth();
-                    router.push("/login");
-                    resolve(data);
-                }).catch((err) => {
-                    console.log("AXIOS INTERCEPTORS ERR", err);
-                    reject(err);
-                });
-            });
-        }
+        // if (res.status === 401 && res.config && !res.config.__isRetryRequest) {
+        //     return new Promise((resolve, reject) => {
+        //         axios.get(`${API_ENDPOINT}/auth/logout`).then((data) => {
+        //             console.log("/401 error > logout");
+        //             dispatch({ type: "LOGOUT" })
+        //             StorageServices.removeUser();
+        //             StorageServices.removeAuth();
+        //             router.push("/login");
+        //             resolve(data);
+        //         }).catch((err) => {
+        //             console.log("AXIOS INTERCEPTORS ERR", err);
+        //             reject(err);
+        //         });
+        //     });
+        // }
         return Promise.reject(error);
     });
 
