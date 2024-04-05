@@ -30,9 +30,9 @@ export const useApiClient = () => {
         }
     };
 
-    useEffect(() => {
-        getCsrfToken();
-    }, [csrfToken]);
+    // useEffect(() => {
+    //     getCsrfToken();
+    // }, [csrfToken]);
 
     const apiClient = axios.create({
         baseURL: API_ENDPOINT,
