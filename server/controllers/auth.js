@@ -35,7 +35,7 @@ export const register = async (req, res) => {
 
         await user.save()
         console.log(user)
-        return res.status(201).json({ success: true })
+        return res.status(201).json({ success: true, message: "Registration Successful" })
     } catch (error) {
         return res.status(400).send("Error. Try again")
     }

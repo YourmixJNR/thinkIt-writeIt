@@ -5,12 +5,12 @@ import { useCustomToast } from "../../hooks/useCustomToast";
 import { StorageServices } from "../../libs/storage";
 import { useRouter } from "next/router";
 
+export const AuthContext = createContext();
+
 export const initialState = {
   user: null,
   isLoggedIn: false,
 };
-
-export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
@@ -31,31 +31,45 @@ export const AuthProvider = ({ children }) => {
   const registerUser = async ({ username, email, password }) => {
     try {
       await getCsrfToken();
-      // setIsLoading(true);
-      await apiClient.post(`/auth/register`, {
+      dispatch({
+        type: "REGISTER",
+        isLoading: true,
+      });
+      const response = await apiClient.post(`/auth/register`, {
         username,
         email,
         password,
       });
-      success("Registration Successful");
-      // clearFormState();
-      // setIsLoading(false);
+      success(data.message);
+      dispatch({
+        type: "REGISTER",
+        isLoading: false,
+      });
+      console.log("The Error", response)
     } catch (err) {
       console.log("Error:", err);
       error(err.response.data);
-      // setIsLoading(false);
+      dispatch({
+        type: "REGISTER",
+        isLoading: false,
+      });
     }
   };
 
   const loginUser = async ({ email, password }) => {
     try {
-      // setLoading(true);
+      await getCsrfToken();
+      dispatch({
+        type: "LOGIN",
+        isLoggedIn: true,
+        loading: true,
+      });
       const { data } = await apiClient.post("/auth/login", { email, password });
-      // dispatch({
-      //   type: "LOGIN",
-      //   payload: data,
-      //   isLoggedIn: true,
-      // });
+      dispatch({
+        type: "LOGIN",
+        payload: data,
+        isLoggedIn: true,
+      });
       StorageServices.setUser(JSON.stringify(data));
       StorageServices.setAuth(JSON.stringify(true));
       success("Login Successfully");

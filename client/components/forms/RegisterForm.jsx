@@ -8,14 +8,13 @@ import PasswordInput from "../ui/PasswordInput";
 import { AuthContext } from "../../context/auth/authContext";
 
 const RegisterForm = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  // const [loading, setIsLoading] = useState(false);
+  const [username, setUsername] = useState("a");
+  const [email, setEmail] = useState("qwttq@gmail.com");
+  const [password, setPassword] = useState("121212");
+  const [confirmPassword, setConfirmPassword] = useState("121212");
 
-  const {registerUser} = useContext(AuthContext)
-
+  const { registerUser, state } = useContext(AuthContext);
+  
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
   };
@@ -32,16 +31,15 @@ const RegisterForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const userData  = {
+    const userData = {
       username: username,
       email: email,
-      password: password
-    }
+      password: password,
+    };
 
-    registerUser(userData)
+    registerUser(userData);
 
-    clearFormState()
-
+    clearFormState();
   };
 
   const clearFormState = () => {
@@ -92,7 +90,7 @@ const RegisterForm = () => {
                 <CustomButton
                   buttonText={"Submit"}
                   type={"submit"}
-                  // isLoading={loading}
+                  isLoading={state.isLoading}
                 />
               </Box>
             </Flex>

@@ -20,19 +20,6 @@ export const useApiClient = () => {
         );
     }
 
-    // const getCsrfToken = async () => {
-    //     try {
-    //         const { data } = await axios.get(`${API_ENDPOINT}/csrf-token`);
-    //         setCsrfToken(data.csrfToken)
-    //     } catch (error) {
-    //         console.error("Error fetching CSRF token:", error);
-    //     }
-    // };
-
-    // useEffect(() => {
-    //     getCsrfToken();
-    // }, [csrfToken]);
-
     const apiClient = axios.create({
         baseURL: API_ENDPOINT,
         headers: {
