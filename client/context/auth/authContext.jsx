@@ -5,10 +5,7 @@ import { useCustomToast } from "../../hooks/useCustomToast";
 import { StorageServices } from "../../libs/storage";
 import { useRouter } from "next/router";
 
-export const AuthContext = React.createContext({
-  state: {},
-  dispatch: () => {},
-});
+export const AuthContext = createContext();
 
 export const initialState = {
   user: null,
