@@ -32,7 +32,7 @@ const {
     getSecret: () => "Secret",
     cookieName: "_csrf",
     size: 64,
-    getTokenFromRequest: (req) => req.cookies["_csrf"],
+    getTokenFromRequest: (req) => req.headers["_csrf"],
 });
 
 // apply middleware
@@ -50,6 +50,10 @@ app.get("/api/csrf-token", (req, res) => {
 
 // routes
 app.use("/api/auth/", authRoutes)
+
+app.post("/api/test-post", (req, res) => {
+    res.send("Yeah Is Working")
+})
 
 
 // port 

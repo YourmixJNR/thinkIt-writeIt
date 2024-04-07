@@ -4,16 +4,13 @@ import { Box, Flex, Heading } from "@chakra-ui/react";
 import CustomInput from "../ui/CustomInput";
 import CustomButton from "../ui/CustomButton";
 import PasswordInput from "../ui/PasswordInput";
-import { useCustomToast } from "../../hooks/useCustomToast";
 import { AuthContext } from "../../context/auth/authContext";
-import { StorageServices } from "../../libs/storage";
 import { useRouter } from "next/router";
-import { useApiClient } from "../../hooks/useApiClient";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -22,37 +19,22 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
-  const apiClient  = useApiClient();
-
-  const { success, error } = useCustomToast();
-
   // state
-  const { dispatch } = useContext(AuthContext);
+  const { loginUser } = useContext(AuthContext);
 
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      setLoading(true);
-      const { data } = await apiClient.post("/auth/login", { email, password });
-      dispatch({
-        type: "LOGIN",
-        payload: data,
-        isLoggedIn: true,
-      });
-      StorageServices.setUser(JSON.stringify(data));
-      StorageServices.setAuth(JSON.stringify(true));
-      success("Login Successfully");
-      clearFormState();
-      setLoading(false);
-      router.push("/");
-    } catch (err) {
-      console.log(err);
-      error(err.response.data);
-      setLoading(false);
-    }
+    const loginData = {
+      email: email,
+      password: password,
+    };
+
+    loginUser(loginData);
+
+    clearFormState();
   };
 
   const clearFormState = () => {
@@ -87,7 +69,7 @@ const LoginForm = () => {
                 <CustomButton
                   buttonText={"Submit"}
                   type={"submit"}
-                  isLoading={loading}
+                  // isLoading={loading}
                 />
               </Box>
             </Flex>

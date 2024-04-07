@@ -8,9 +8,8 @@ import { useContext } from "react";
 import { StorageServices } from "../libs/storage";
 
 export const useApiClient = () => {
-    const [csrfToken, setCsrfToken] = useState(null)
 
-    const { dispatch } = useContext(AuthContext)
+    // const { dispatch } = useContext(AuthContext)
 
     const router = useRouter();
     const API_ENDPOINT = loadEnv.API_URL || process.env.NEXT_PUBLIC_API_URL;
@@ -21,14 +20,14 @@ export const useApiClient = () => {
         );
     }
 
-    const getCsrfToken = async () => {
-        try {
-            const { data } = await axios.get(`${API_ENDPOINT}/csrf-token`);
-            setCsrfToken(data.csrfToken)
-        } catch (error) {
-            console.error("Error fetching CSRF token:", error);
-        }
-    };
+    // const getCsrfToken = async () => {
+    //     try {
+    //         const { data } = await axios.get(`${API_ENDPOINT}/csrf-token`);
+    //         setCsrfToken(data.csrfToken)
+    //     } catch (error) {
+    //         console.error("Error fetching CSRF token:", error);
+    //     }
+    // };
 
     // useEffect(() => {
     //     getCsrfToken();
@@ -38,8 +37,24 @@ export const useApiClient = () => {
         baseURL: API_ENDPOINT,
         headers: {
             "Content-Type": "application/json",
-            "_csrf": csrfToken
         }
+    });
+
+    apiClient.interceptors.request.use(function (request) {
+        // Do something before request is sent
+        const fetchCsrfToken = StorageServices.getCsrfToken()
+        if (fetchCsrfToken) {
+            request.headers = { ...request.headers, "_csrf": fetchCsrfToken }
+        } else {
+            request.headers = {
+              ...request.headers,
+              "_csrf": request?.headers?._csrf || '',
+            }
+          }
+        return request;
+    }, function (error) {
+        // Do something with request error
+        return Promise.reject(error);
     });
 
     apiClient.interceptors.response.use(function (response) {

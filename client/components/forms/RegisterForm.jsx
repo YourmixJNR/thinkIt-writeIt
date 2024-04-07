@@ -1,23 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import NextLink from "next/link";
-import { useApiClient } from "../../hooks/useApiClient";
 import { Box, Flex, Heading, Text, Link } from "@chakra-ui/react";
 import CustomInput from "../ui/CustomInput";
 import CustomButton from "../ui/CustomButton";
 import PasswordInput from "../ui/PasswordInput";
-import { useCustomToast } from "../../hooks/useCustomToast";
+import { AuthContext } from "../../context/auth/authContext";
 
 const RegisterForm = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [loading, setIsLoading] = useState(false);
+  // const [loading, setIsLoading] = useState(false);
 
-  const apiClient = useApiClient()
-
-  const { success, error } = useCustomToast();
+  const {registerUser} = useContext(AuthContext)
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -34,21 +31,17 @@ const RegisterForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      setIsLoading(true);
-      await axios.apiClient(`/auth/register`, {
-        username,
-        email,
-        password,
-      });
-      success("Registration Successful");
-      clearFormState();
-      setIsLoading(false);
-    } catch (err) {
-      console.log("Error:", err);
-      error(err.response.data);
-      setIsLoading(false);
+
+    const userData  = {
+      username: username,
+      email: email,
+      password: password
     }
+
+    registerUser(userData)
+
+    clearFormState()
+
   };
 
   const clearFormState = () => {
@@ -99,7 +92,7 @@ const RegisterForm = () => {
                 <CustomButton
                   buttonText={"Submit"}
                   type={"submit"}
-                  isLoading={loading}
+                  // isLoading={loading}
                 />
               </Box>
             </Flex>
