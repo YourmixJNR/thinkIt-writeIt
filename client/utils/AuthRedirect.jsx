@@ -8,11 +8,11 @@ const AuthRedirect = ({ children }) => {
 
 console.log(state.isLoggedIn)
 
-//  useEffect(() => {
-//     if (state.isLoggedIn) {
-//       router.push("/");
-//     }
-//  }, [state.isLoggedIn, router]);
+ useEffect(() => {
+    if (state.isLoggedIn) {
+      router.push("/");
+    }
+ }, [state.isLoggedIn, router]);
 
  return children;
 };

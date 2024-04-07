@@ -1,11 +1,14 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useReducer, useEffect } from "react";
 import authReducer from "../auth/authReducer";
 import { useApiClient } from "../../hooks/useApiClient";
 import { useCustomToast } from "../../hooks/useCustomToast";
 import { StorageServices } from "../../libs/storage";
 import { useRouter } from "next/router";
 
-export const AuthContext = createContext();
+export const AuthContext = React.createContext({
+  state: {},
+  dispatch: () => {},
+});
 
 export const initialState = {
   user: null,
@@ -83,13 +86,13 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // useEffect(() => {
-  //   dispatch({
-  //     type: "LOGIN",
-  //     payload: JSON.parse(StorageServices.getUser()),
-  //     isLoggedIn: JSON.parse(StorageServices.getAuth()),
-  //   });
-  // }, []);
+  useEffect(() => {
+    dispatch({
+      type: "LOGIN",
+      payload: JSON.parse(StorageServices.getUser()),
+      isLoggedIn: JSON.parse(StorageServices.getAuth()),
+    });
+  }, []);
 
   return (
     <AuthContext.Provider value={{ state, dispatch, registerUser, loginUser }}>

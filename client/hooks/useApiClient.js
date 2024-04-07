@@ -1,17 +1,14 @@
 // useApiClient.js
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import axios from "axios";
 import { useRouter } from 'next/router';
 import { loadEnv } from "../env/loadEnv";
-import { AuthContext } from "../context/auth/authContext";
-import { useContext } from "react";
 import { StorageServices } from "../libs/storage";
 
 export const useApiClient = () => {
 
-    // const { dispatch } = useContext(AuthContext)
-
     const router = useRouter();
+
     const API_ENDPOINT = loadEnv.API_URL || process.env.NEXT_PUBLIC_API_URL;
 
     if (!API_ENDPOINT) {
@@ -50,21 +47,20 @@ export const useApiClient = () => {
     }, function (error) {
         // Do something with response error
         let res = error.response;
-        // if (res.status === 401 && res.config && !res.config.__isRetryRequest) {
-        //     return new Promise((resolve, reject) => {
-        //         axios.get(`${API_ENDPOINT}/auth/logout`).then((data) => {
-        //             console.log("/401 error > logout");
-        //             dispatch({ type: "LOGOUT" })
-        //             StorageServices.removeUser();
-        //             StorageServices.removeAuth();
-        //             router.push("/login");
-        //             resolve(data);
-        //         }).catch((err) => {
-        //             console.log("AXIOS INTERCEPTORS ERR", err);
-        //             reject(err);
-        //         });
-        //     });
-        // }
+        if (res.status === 401 && res.config && !res.config.__isRetryRequest) {
+            return new Promise((resolve, reject) => {
+                axios.get(`${API_ENDPOINT}/auth/logout`).then((data) => {
+                    console.log("/401 error > logout");
+                    StorageServices.removeUser();
+                    StorageServices.removeAuth();
+                    router.push("/login");
+                    resolve(data);
+                }).catch((err) => {
+                    console.log("AXIOS INTERCEPTORS ERR", err);
+                    reject(err);
+                });
+            });
+        }
         return Promise.reject(error);
     });
 
