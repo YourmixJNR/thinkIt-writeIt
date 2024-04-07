@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useApiClient } from '../../hooks/useApiClient'
+import ProtectedRoute from '../../utils/ProtectedRoute'
 
 const Index = () => {
     const apiClient = useApiClient()
@@ -15,11 +16,13 @@ const Index = () => {
     //     fetchUser()
     // }, [])
     return (
+        <ProtectedRoute>
         <div>
             <p onClick={handleClick}>
                 Hi
             </p>
         </div>
+        </ProtectedRoute>
     )
 }
 
