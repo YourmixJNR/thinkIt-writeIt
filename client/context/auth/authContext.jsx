@@ -10,6 +10,7 @@ export const AuthContext = createContext();
 export const initialState = {
   user: null,
   isLoggedIn: false,
+  isLoading: false,
 };
 
 export const AuthProvider = ({ children }) => {
@@ -35,7 +36,7 @@ export const AuthProvider = ({ children }) => {
         type: "REGISTER",
         isLoading: true,
       });
-      const response = await apiClient.post(`/auth/register`, {
+      const { data } = await apiClient.post(`/auth/register`, {
         username,
         email,
         password,
@@ -45,7 +46,7 @@ export const AuthProvider = ({ children }) => {
         type: "REGISTER",
         isLoading: false,
       });
-      console.log("The Error", response)
+      router.push("/login");
     } catch (err) {
       console.log("Error:", err);
       error(err.response.data);
@@ -61,25 +62,24 @@ export const AuthProvider = ({ children }) => {
       await getCsrfToken();
       dispatch({
         type: "LOGIN",
-        isLoggedIn: true,
-        loading: true,
+        isLoading: true,
       });
       const { data } = await apiClient.post("/auth/login", { email, password });
       dispatch({
         type: "LOGIN",
-        payload: data,
-        isLoggedIn: true,
+        payload: data.user,
       });
-      StorageServices.setUser(JSON.stringify(data));
+      StorageServices.setUser(JSON.stringify(data.user));
       StorageServices.setAuth(JSON.stringify(true));
-      success("Login Successfully");
-      // clearFormState();
-      // setLoading(false);
+      success(data.message);
       router.push("/");
     } catch (err) {
       console.log(err);
       error(err.response.data);
-      // setLoading(false);
+      dispatch({
+        type: "LOGIN",
+        isLoading: false,
+      });
     }
   };
 
