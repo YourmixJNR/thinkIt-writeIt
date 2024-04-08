@@ -68,6 +68,7 @@ export const AuthProvider = ({ children }) => {
       dispatch({
         type: "LOGIN",
         payload: data.user,
+        isLoggedIn: true,
       });
       StorageServices.setUser(JSON.stringify(data.user));
       StorageServices.setAuth(JSON.stringify(true));
@@ -78,6 +79,7 @@ export const AuthProvider = ({ children }) => {
       error(err.response.data);
       dispatch({
         type: "LOGIN",
+        isLoggedIn: false,
         isLoading: false,
       });
     }
