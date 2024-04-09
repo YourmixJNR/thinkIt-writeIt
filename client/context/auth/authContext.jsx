@@ -73,7 +73,7 @@ export const AuthProvider = ({ children }) => {
       StorageServices.setUser(JSON.stringify(data.user));
       StorageServices.setAuth(JSON.stringify(true));
       success(data.message);
-      router.push("/");
+      router.push("/user");
     } catch (err) {
       console.log(err);
       error(err.response.data);
@@ -85,6 +85,16 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const logoutUser = async () => {
+    dispatch({
+      type: "LOGOUT",
+    });
+    await apiClient.get("/auth/logout");
+    StorageServices.removeUser();
+    StorageServices.removeAuth();
+    router.push("/login");
+  };
+
   useEffect(() => {
     dispatch({
       type: "LOGIN",
@@ -94,7 +104,9 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ state, dispatch, registerUser, loginUser }}>
+    <AuthContext.Provider
+      value={{ state, dispatch, registerUser, loginUser, logoutUser }}
+    >
       {children}
     </AuthContext.Provider>
   );

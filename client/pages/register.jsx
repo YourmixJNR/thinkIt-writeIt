@@ -14,3 +14,5 @@ const Register = () => {
 };
 
 export default Register;
+
+export { getServerSideProps } from "../src/Chakra";

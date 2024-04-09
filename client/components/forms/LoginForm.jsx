@@ -8,8 +8,8 @@ import { AuthContext } from "../../context/auth/authContext";
 import { useRouter } from "next/router";
 
 const LoginForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("@gmail.com");
+  const [password, setPassword] = useState("121212");
   // const [loading, setLoading] = useState(false);
 
   const handleEmailChange = (e) => {
@@ -32,7 +32,7 @@ const LoginForm = () => {
       password: password,
     };
 
-    loginUser(loginData);
+    await loginUser(loginData);
 
     clearFormState();
   };

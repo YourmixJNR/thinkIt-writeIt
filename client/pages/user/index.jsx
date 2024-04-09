@@ -1,29 +1,22 @@
-import React, { useEffect } from 'react'
-import { useApiClient } from '../../hooks/useApiClient'
-import ProtectedRoute from '../../utils/ProtectedRoute'
+import React, { useContext, useEffect } from "react";
+import ProtectedRoute from "../../utils/ProtectedRoute";
+import UserLayout from "../../components/users/layout";
+import { AuthContext } from "../../context/auth/authContext";
 
 const Index = () => {
-    const apiClient = useApiClient()
-    const handleClick = async () => {
-        try {
-            const { data } = await apiClient.get("/auth/current-user")
-            console.log(data)
-        } catch (err) {
-            console.log("Error", err)
-        }
-    }
-    // useEffect(() => {
-    //     fetchUser()
-    // }, [])
-    return (
-        <ProtectedRoute>
-        <div>
-            <p onClick={handleClick}>
-                Hi
-            </p>
-        </div>
-        </ProtectedRoute>
-    )
-}
+const {logoutUser} = useContext(AuthContext)
 
-export default Index
+  return (
+    <ProtectedRoute>
+      <UserLayout>
+        <div>
+          <p onClick={logoutUser}>Hi</p>
+        </div>
+      </UserLayout>
+    </ProtectedRoute>
+  );
+};
+
+export default Index;
+
+export { getServerSideProps } from "../../src/Chakra";

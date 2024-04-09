@@ -3,16 +3,16 @@ import { useRouter } from "next/router";
 import { AuthContext } from "../context/auth/authContext";
 
 const AuthRedirect = ({ children }) => {
- const { state } = useContext(AuthContext);
- const router = useRouter();
+  const { state } = useContext(AuthContext);
+  const router = useRouter();
 
- useEffect(() => {
+  useEffect(() => {
     if (state.isLoggedIn) {
-      router.push("/");
+      router.push("/user");
     }
- }, [state.isLoggedIn, router]);
+  }, [state.isLoggedIn, router]);
 
- return children;
+  return children;
 };
 
 export default AuthRedirect;
