@@ -1,5 +1,4 @@
 /** @type {import('next').NextConfig} */
-const path = require('path')
 
 const nextConfig = {
   images: {
@@ -14,4 +13,4 @@ const nextConfig = {
   },
 }
 
-module.exports = nextConfig
+export default nextConfig

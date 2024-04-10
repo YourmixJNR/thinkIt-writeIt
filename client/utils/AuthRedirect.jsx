@@ -6,8 +6,10 @@ const AuthRedirect = ({ children }) => {
   const { state } = useContext(AuthContext);
   const router = useRouter();
 
+  const checkState = state.isLoggedIn??
+
   useEffect(() => {
-    if (state.isLoggedIn) {
+    if (checkState) {
       router.push("/user");
     }
   }, [state.isLoggedIn, router]);

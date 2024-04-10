@@ -1,18 +1,24 @@
-import React, { useContext, useEffect } from "react";
-import { useRouter } from "next/router";
-import { AuthContext } from "../context/auth/authContext";
+// 'use-client'
 
-const ProtectedRoute = ({ children }) => {
- const { state } = useContext(AuthContext);
- const router = useRouter();
+// import React, { useContext, useEffect } from "react";
+// import { useRouter } from "next/router";
+// import { AuthContext } from "../context/auth/authContext";
 
- useEffect(() => {
-    if (!state.isLoggedIn) {
-      router.push("/login");
-    }
- }, [state.isLoggedIn, router]);
+// const ProtectedRoute = ({ children }) => {
+//   const { state } = useContext(AuthContext);
+//   const router = useRouter();
+ 
+//   const isLoggedIn = state.isLoggedIn === true;
 
- return children;
-};
+//     // Check if the user is authenticated
+//     if (!isLoggedIn) {
+//       // If not, redirect to the login page
+//       router.push("/login");
+//     }
 
-export default ProtectedRoute;
+ 
+//   return children;
+//  };
+ 
+
+// export default ProtectedRoute;

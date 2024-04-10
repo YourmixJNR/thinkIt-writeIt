@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useEffect } from "react";
+import React, { createContext,useState, useReducer, useEffect } from "react";
 import authReducer from "../auth/authReducer";
 import { useApiClient } from "../../hooks/useApiClient";
 import { useCustomToast } from "../../hooks/useCustomToast";
@@ -14,6 +14,7 @@ export const initialState = {
 };
 
 export const AuthProvider = ({ children }) => {
+  const [isLoading, setIsLoading] = useState(true); // Add a loading state
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   const apiClient = useApiClient();
@@ -96,12 +97,19 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    dispatch({
-      type: "LOGIN",
-      payload: JSON.parse(StorageServices.getUser()),
-      isLoggedIn: JSON.parse(StorageServices.getAuth()),
-    });
-  }, []);
+    // Attempt to rehydrate the state from storage
+    const storedUser = StorageServices.getUser();
+    const storedAuth = StorageServices.getAuth();
+   
+    if (storedUser && storedAuth) {
+       // If we have a stored user and auth state, update the state accordingly
+       dispatch({
+         type: "LOGIN",
+         payload: JSON.parse(storedUser),
+         isLoggedIn: JSON.parse(storedAuth),
+       });
+    }
+   }, []);
 
   return (
     <AuthContext.Provider
