@@ -96,13 +96,13 @@ export const AuthProvider = ({ children }) => {
     router.push("/login");
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     // Attempt to rehydrate the state from storage
     const storedUser = StorageServices.getUser();
     const storedAuth = StorageServices.getAuth();
    
     if (storedUser && storedAuth) {
-       // If we have a stored user and auth state, update the state accordingly
+       
        dispatch({
          type: "LOGIN",
          payload: JSON.parse(storedUser),
