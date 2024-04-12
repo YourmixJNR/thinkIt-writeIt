@@ -47,7 +47,7 @@ export const AuthProvider = ({ children }) => {
         type: "REGISTER",
         isLoading: false,
       });
-      router.push("/login");
+      router.push("/auth/login");
     } catch (err) {
       console.log("Error:", err);
       error(err.response.data);
@@ -93,7 +93,7 @@ export const AuthProvider = ({ children }) => {
     await apiClient.get("/auth/logout");
     StorageServices.removeUser();
     StorageServices.removeAuth();
-    router.push("/login");
+    router.push("/auth/login");
   };
 
   useEffect(() => {

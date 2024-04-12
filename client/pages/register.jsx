@@ -1,15 +1,12 @@
 import React from "react";
 import Layout from "../components/layout";
 import RegisterForm from "../components/forms/RegisterForm";
-import AuthRedirect from "../utils/AuthRedirect";
 
 const Register = () => {
   return (
-    <AuthRedirect>
-      <Layout>
-        <RegisterForm />
-      </Layout>
-    </AuthRedirect>
+    <Layout>
+      <RegisterForm />
+    </Layout>
   );
 };
 

@@ -5,9 +5,9 @@ import { RiLogoutBoxLine } from "react-icons/ri";
 
 const links = [
     { name: "App", icon: <TbLayoutGridAdd />, path: "/" },
-    { name: "Sign Up", icon: <TbUsersPlus />, path: "/register" },
-    { name: "Login", icon: <RiLoginBoxLine />, path: "/login" },
-    { name: "Logout", icon: <RiLogoutBoxLine />, path: "/login" },
+    { name: "Sign Up", icon: <TbUsersPlus />, path: "/auth/register" },
+    { name: "Login", icon: <RiLoginBoxLine />, path: "/auth/login" },
+    { name: "Logout", icon: <RiLogoutBoxLine />, path: "/auth/login" },
 ]
 
 export default links
