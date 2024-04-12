@@ -1,4 +1,4 @@
-import React, { createContext,useState, useReducer, useEffect } from "react";
+import React, { createContext,useState, useReducer, useEffect, useLayoutEffect } from "react";
 import authReducer from "../auth/authReducer";
 import { useApiClient } from "../../hooks/useApiClient";
 import { useCustomToast } from "../../hooks/useCustomToast";
@@ -9,7 +9,7 @@ export const AuthContext = createContext();
 
 export const initialState = {
   user: null,
-  isLoggedIn: false,
+  isLoggedIn: "",
   isLoading: false,
 };
 
@@ -96,7 +96,7 @@ export const AuthProvider = ({ children }) => {
     router.push("/login");
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     // Attempt to rehydrate the state from storage
     const storedUser = StorageServices.getUser();
     const storedAuth = StorageServices.getAuth();

@@ -1,19 +1,19 @@
 import React, { useContext, useEffect } from "react";
 import UserLayout from "../../components/users/layout";
-import { AuthContext } from "../../context/auth/authContext";
+import { withAuth } from "../../middleware/auth";
 
 const Index = () => {
-const {logoutUser} = useContext(AuthContext)
-
   return (
-      <UserLayout>
-        <div>
-          <p onClick={logoutUser}>Hi</p>
-        </div>
-      </UserLayout>
+    <UserLayout>
+      <div>
+        <p onClick={logoutUser}>Hi</p>
+      </div>
+    </UserLayout>
   );
 };
 
-export default Index;
+// export default Index;
+
+export default withAuth(Index);
 
 export { getServerSideProps } from "../../src/Chakra";
