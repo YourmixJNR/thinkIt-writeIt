@@ -1,4 +1,4 @@
-import React, { createContext,useState, useReducer, useEffect, useLayoutEffect } from "react";
+import React, { createContext, useReducer, useEffect } from "react";
 import authReducer from "../auth/authReducer";
 import { useApiClient } from "../../hooks/useApiClient";
 import { useCustomToast } from "../../hooks/useCustomToast";
@@ -9,12 +9,10 @@ export const AuthContext = createContext();
 
 export const initialState = {
   user: null,
-  isLoggedIn: "",
   isLoading: false,
 };
 
 export const AuthProvider = ({ children }) => {
-  const [isLoading, setIsLoading] = useState(true); // Add a loading state
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   const apiClient = useApiClient();
@@ -72,7 +70,6 @@ export const AuthProvider = ({ children }) => {
         isLoggedIn: true,
       });
       StorageServices.setUser(JSON.stringify(data.user));
-      StorageServices.setAuth(JSON.stringify(true));
       success(data.message);
       router.push("/user");
     } catch (err) {
@@ -80,7 +77,6 @@ export const AuthProvider = ({ children }) => {
       error(err.response.data);
       dispatch({
         type: "LOGIN",
-        isLoggedIn: false,
         isLoading: false,
       });
     }
@@ -92,24 +88,16 @@ export const AuthProvider = ({ children }) => {
     });
     await apiClient.get("/auth/logout");
     StorageServices.removeUser();
-    StorageServices.removeAuth();
+    StorageServices.removeCsrfToken()
     router.push("/auth/login");
   };
 
   useEffect(() => {
-    // Attempt to rehydrate the state from storage
-    const storedUser = StorageServices.getUser();
-    const storedAuth = StorageServices.getAuth();
-   
-    if (storedUser && storedAuth) {
-       
-       dispatch({
-         type: "LOGIN",
-         payload: JSON.parse(storedUser),
-         isLoggedIn: JSON.parse(storedAuth),
-       });
-    }
-   }, []);
+    dispatch({
+      type: "LOGIN",
+      payload: JSON.parse(StorageServices.getUser()),
+    });
+  }, []);
 
   return (
     <AuthContext.Provider

@@ -30,7 +30,7 @@ const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
 
-  const { state, dispatch } = useContext(AuthContext);
+  const { dispatch } = useContext(AuthContext);
 
   const router = useRouter();
 
@@ -41,7 +41,6 @@ const Header = () => {
       type: "LOGOUT",
     });
     StorageServices.removeUser();
-    StorageServices.removeAuth();
     await apiClient.get("/auth/logout");
     router.push("/login");
   };

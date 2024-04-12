@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
-import Layout from "../components/layout";
-import LoginForm from "../components/forms/LoginForm";
+import Layout from "../../components/layout";
+import LoginForm from "../../components/forms/LoginForm";
 
 const Login = () => {
   return (
@@ -12,4 +12,4 @@ const Login = () => {
 
 export default Login;
 
-export { getServerSideProps } from "../src/Chakra";
+export { getServerSideProps } from "../../src/Chakra";

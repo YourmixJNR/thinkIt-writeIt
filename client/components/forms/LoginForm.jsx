@@ -5,12 +5,10 @@ import CustomInput from "../ui/CustomInput";
 import CustomButton from "../ui/CustomButton";
 import PasswordInput from "../ui/PasswordInput";
 import { AuthContext } from "../../context/auth/authContext";
-import { useRouter } from "next/router";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("@gmail.com");
   const [password, setPassword] = useState("121212");
-  // const [loading, setLoading] = useState(false);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -21,8 +19,6 @@ const LoginForm = () => {
 
   // state
   const { loginUser } = useContext(AuthContext);
-
-  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();

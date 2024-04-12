@@ -1,5 +1,4 @@
 export const USER_KEY = "user"
-export const AUTH_KEY = "auth"
 export const CSRF_KEY = "csrfToken"
 
 export const setUser = (user) => {
@@ -12,18 +11,6 @@ export const getUser = () => {
 
 export const removeUser = () => {
     window.localStorage.removeItem(USER_KEY)
-}
-
-export const setAuth = (authState) => {
-    window.localStorage.setItem(AUTH_KEY, authState)
-}
-
-export const getAuth = () => {
-    return window.localStorage.getItem(AUTH_KEY)
-}
-
-export const removeAuth = () => {
-    window.localStorage.removeItem(AUTH_KEY)
 }
 
 export const setCsrfToken = (csrfToken) => {
@@ -42,9 +29,6 @@ export const StorageServices = {
     setUser,
     getUser,
     removeUser,
-    setAuth,
-    getAuth,
-    removeAuth,
     setCsrfToken,
     getCsrfToken,
     removeCsrfToken
