@@ -1,8 +1,10 @@
 import React, { useContext, useEffect } from "react";
 import UserLayout from "../../components/users/layout";
-import { withAuth } from "../../middleware/auth";
+import { AuthContext } from "../../context/auth/authContext";
 
 const Index = () => {
+
+  const {logoutUser} = useContext(AuthContext)
   return (
     <UserLayout>
       <div>
@@ -12,8 +14,6 @@ const Index = () => {
   );
 };
 
-// export default Index;
-
-export default withAuth(Index);
+export default Index;
 
 export { getServerSideProps } from "../../src/Chakra";

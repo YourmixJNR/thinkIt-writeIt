@@ -1,6 +1,11 @@
-// pages/_middleware.js
-import { withAuth } from './middleware/auth';
+export async function middleware(request) {
+    const currentUser = request.cookies.get('token')?.value
 
-export default withAuth({
- matcher: ['/dashboard', '/protected-route'],
-});
+    if (!currentUser) {
+        return Response.redirect(new URL('/login', request.url))
+    }
+}
+
+export const config = {
+    matcher: "/user/:path*",
+}
