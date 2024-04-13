@@ -5,26 +5,24 @@ import {
   Flex,
   Box,
   Link,
-  Button,
-  useDisclosure,
-  Drawer,
-  DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  forwardRef,
+  MenuDivider,
 } from "@chakra-ui/react";
 import Switch from "../../switch/Switch";
 import NextLink from "next/link";
 import { IoMdArrowDropdown } from "react-icons/io";
+import { MdOutlineSettings } from "react-icons/md";
+import { MdOutlineAccountCircle } from "react-icons/md";
+import { MdOutlineInfo } from "react-icons/md";
+import { MdLogout } from "react-icons/md";
 import { AuthContext } from "../../../context/auth/authContext";
 
 const Header = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = React.useRef();
-
-  const { state } = useContext(AuthContext);
+  const { state, logoutUser } = useContext(AuthContext);
 
   const { user } = state;
 
@@ -49,37 +47,80 @@ const Header = () => {
         </Link>
         <Switch />
         {user && (
-          <Flex>
-            <Image src={user.picture} alt="user-photo" height={48} width={48} />
-            <Button
-              ref={btnRef}
-              onClick={onOpen}
-              w={0}
-              h={0}
-              display={"flex"}
-              fontSize={"1rem"}
-              fontWeight={"semibold"}
-              textColor={"white"}
-              borderRadius={"0.2rem"}
-              colorScheme="none"
+          <Menu isLazy>
+            <MenuButton
+              as={Box}
+              ref={forwardRef}
+              _hover={{
+                cursor: "pointer",
+              }}
             >
-              <IoMdArrowDropdown />
-            </Button>
-            <Drawer
-              isOpen={isOpen}
-              placement="right"
-              onClose={onClose}
-              finalFocusRef={btnRef}
-              display={{ md: "none" }}
-            >
-              <DrawerOverlay />
-              <DrawerContent>
-                <DrawerHeader paddingTop={"5rem"}>Hi @Username</DrawerHeader>
-                <DrawerBody></DrawerBody>
-                <DrawerFooter></DrawerFooter>
-              </DrawerContent>
-            </Drawer>
-          </Flex>
+              <Flex align={"center"}>
+                <Image
+                  src={user.picture}
+                  alt="user-photo"
+                  height={35}
+                  width={35}
+                />
+                <IoMdArrowDropdown
+                  style={{
+                    fontSize: "1rem",
+                  }}
+                />
+              </Flex>
+            </MenuButton>
+            <MenuList>
+              <MenuItem
+                icon={
+                  <MdOutlineSettings
+                    style={{
+                      fontSize: "1rem",
+                    }}
+                  />
+                }
+              >
+                Settings
+              </MenuItem>
+              <MenuItem
+                icon={
+                  <MdOutlineAccountCircle
+                    style={{
+                      fontSize: "1rem",
+                    }}
+                  />
+                }
+              >
+                View Profile
+              </MenuItem>
+              <MenuItem
+                icon={
+                  <MdOutlineInfo
+                    style={{
+                      fontSize: "1rem",
+                    }}
+                  />
+                }
+                as={"a"}
+                href="https://github.com/YourmixJNR"
+                target="_blank"
+              >
+                Get Help
+              </MenuItem>
+              <MenuDivider />
+              <MenuItem
+                icon={
+                  <MdLogout
+                    style={{
+                      fontSize: "1rem",
+                    }}
+                  />
+                }
+                onClick={logoutUser}
+              >
+                Logout
+              </MenuItem>
+            </MenuList>
+          </Menu>
         )}
       </Flex>
     </Box>

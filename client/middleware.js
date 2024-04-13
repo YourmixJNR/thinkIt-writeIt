@@ -13,7 +13,7 @@ export async function middleware(request) {
 
     if (!currentUser && protectedRoutes.includes(request.nextUrl.pathname)) {
 
-        return Response.redirect(new URL('/login', request.url));
+        return Response.redirect(new URL('/auth/login', request.url));
     }
 
     return NextResponse.next();
