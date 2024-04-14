@@ -63,18 +63,18 @@ export const AuthProvider = ({ children }) => {
         type: "LOGIN",
         isLoading: true,
       });
-      const { data } = await apiClient.post("/auth/login", { email, password });
+      const { response } = await apiClient.post("/auth/login", { email, password });
       dispatch({
         type: "LOGIN",
-        payload: data.user,
+        payload: response.data,
         isLoggedIn: true,
       });
-      StorageServices.setUser(JSON.stringify(data.user));
-      success(data.message);
+      StorageServices.setUser(JSON.stringify(response.data));
+      success(response.message);
       router.push("/user");
     } catch (err) {
       console.log(err);
-      error(err.response.data);
+      error(err.response.data.error);
       dispatch({
         type: "LOGIN",
         isLoading: false,
