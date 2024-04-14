@@ -9,7 +9,6 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  forwardRef,
   MenuDivider,
 } from "@chakra-ui/react";
 import Switch from "../../switch/Switch";
@@ -50,7 +49,6 @@ const Header = () => {
           <Menu isLazy>
             <MenuButton
               as={Box}
-              ref={forwardRef}
               _hover={{
                 cursor: "pointer",
               }}
@@ -108,6 +106,7 @@ const Header = () => {
               </MenuItem>
               <MenuDivider />
               <MenuItem
+                color={"red"}
                 icon={
                   <MdLogout
                     style={{

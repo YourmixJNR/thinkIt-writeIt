@@ -98,7 +98,7 @@ const RegisterForm = () => {
         </Box>
         <Text textAlign={"center"} py={"1rem"} as={"p"}>
           Already register .?{" "}
-          <Link as={NextLink} href="/login">
+          <Link as={NextLink} href="/auth/login">
             Login
           </Link>
         </Text>

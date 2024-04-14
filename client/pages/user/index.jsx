@@ -1,15 +1,14 @@
 import React, { useContext, useEffect } from "react";
 import UserLayout from "../../components/users/layout";
 import { AuthContext } from "../../context/auth/authContext";
+import User from "../../components/users/User";
 
 const Index = () => {
 
   const {logoutUser} = useContext(AuthContext)
   return (
     <UserLayout>
-      <div>
-        <p onClick={logoutUser}>Hi</p>
-      </div>
+      <User />
     </UserLayout>
   );
 };

@@ -23,6 +23,10 @@ const userSchema = new Schema({
         type: String,
         default: "https://i.ibb.co/FV1yg3g/customer.png",
     },
+    bio: {
+        type: String,
+        max: 250,
+    },
     role: {
         type: [String],
         default: "Subscriber",

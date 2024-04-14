@@ -18,7 +18,7 @@ const LoginForm = () => {
   };
 
   // state
-  const { loginUser } = useContext(AuthContext);
+  const { state, loginUser } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -65,7 +65,7 @@ const LoginForm = () => {
                 <CustomButton
                   buttonText={"Submit"}
                   type={"submit"}
-                  // isLoading={loading}
+                  isLoading={state.isLoading}
                 />
               </Box>
             </Flex>

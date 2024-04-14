@@ -1,15 +1,11 @@
 // import express from "express"
 import { Router } from "express"
-import { requireSignIn } from "../middlewares/authMiddleware.js"
+import { register, login, logout } from "../controllers/auth.js"
 
-const authRoutes = Router()
+const authRouter = Router()
 
-// controllers
-import { register, login, logout, currentUser } from "../controllers/auth.js"
+authRouter.post("/register", register)
+authRouter.post("/login", login)
+authRouter.get("/logout", logout)
 
-authRoutes.post("/register", register)
-authRoutes.post("/login", login)
-authRoutes.get("/logout", logout)
-authRoutes.get("/current-user", requireSignIn, currentUser)
-
-export default authRoutes
+export default authRouter

@@ -112,7 +112,7 @@ const Header = () => {
                 >
                   Close Me .!
                 </DrawerCloseButton>
-                <DrawerHeader paddingTop={"5rem"}>Hi @Username</DrawerHeader>
+                <DrawerHeader paddingTop={"5rem"}>Welcome</DrawerHeader>
                 <DrawerBody>
                   <Nav
                     customStyles={{
@@ -122,33 +122,6 @@ const Header = () => {
                     }}
                   />
                 </DrawerBody>
-                <DrawerFooter>
-                  <Box
-                    ref={btnRef}
-                    bg={"customOrange"}
-                    p={2}
-                    display={"flex"}
-                    fontSize={"1rem"}
-                    fontWeight={"semibold"}
-                    textColor={"white"}
-                    borderRadius={"0.2rem"}
-                    gap={1}
-                    alignItems={"center"}
-                    colorScheme="none"
-                  >
-                    <RiLogoutBoxLine />
-                    <Box
-                      as="span"
-                      onClick={handleLogout}
-                      _hover={{
-                        cursor: "pointer",
-                      }}
-                    >
-                      {" "}
-                      Log Out .!
-                    </Box>
-                  </Box>
-                </DrawerFooter>
               </DrawerContent>
             </Drawer>
           </Box>

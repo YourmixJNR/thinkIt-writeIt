@@ -51,12 +51,13 @@ export const login = async (req, res) => {
         const match = await comparePassword(password, user.password)
         if (!match) return res.status(400).send("Incorrect Password")
         const token = generateToken(user._id)
-        user.password = undefined
+        // user.password = undefined
+        const sendResponse = await User.findOne({ email }).select("-password -role -_id -createdAt -updatedAt -__v")
 
         res.cookie("token", token, {
             httpOnly: true,
         })
-        res.json({user: user, message : "Login Successfully"})
+        res.json({ user: sendResponse, message: "Login Successfully" })
     } catch (err) {
         console.log(err)
         return res.status(400).send("Error. Try again")
@@ -74,10 +75,32 @@ export const logout = (req, res) => {
 
 export const currentUser = async (req, res) => {
     try {
-        const user = await User.findById(req.auth.id).select("-password").exec()
+        const id = req.auth._id
+        const user = await User.findOne({id}).select("-password").exec()
         console.log(user)
         res.status(200).json(user)
     } catch (err) {
         console.log("Error", err)
     }
+}
+
+export const updateUser = async (req, res) => {
+    try {
+        const { bio } = req.body
+        if (!bio) {
+            res.status(400).json({
+                error: "Bio field cannot be empty"
+            })
+        }
+        const id = req.auth._id
+        const user = await User.findOneAndUpdate({id}, {bio}, {
+            new: true
+          })
+        res.status(201).json({
+            message: "Profile Updated",
+        })
+    } catch (err) {
+        console.log("Error", err)
+    }
+
 }
