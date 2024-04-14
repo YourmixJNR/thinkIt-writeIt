@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { requireSignIn } from "../middlewares/authMiddleware";
-import { currentUser, updateUser } from "../controllers/auth";
+import { requireSignIn } from "../middlewares/authMiddleware.js";
+import { currentUser } from "../controllers/user.js";
 
-const router = Router()
+const userRouter = Router();
 
-router.get("/current-user", requireSignIn, currentUser)
-router.post("/update-user", requireSignIn, updateUser)
+userRouter.get("/current-user", requireSignIn, currentUser);
+
+export default userRouter;

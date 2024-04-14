@@ -6,8 +6,9 @@ import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import { configDotenv } from "dotenv";
 configDotenv({ path: "./development.env" }); //  Change to 'production.env' when deploying
-import indexRouter from "./routes";
-import authRouter from "./routes/auth";
+import indexRouter from "./routes/index.js";
+import authRouter from "./routes/auth.js";
+import userRouter from "./routes/user.js";
 
 // create express app
 const app = express();
@@ -49,6 +50,7 @@ app.get("/api/csrf-token", (req, res) => {
 // routes
 app.use("/api", indexRouter);
 app.use("/api/auth/", authRouter);
+app.use("/api/", userRouter);
 
 // port
 const port = process.env.PORT || 8000;
