@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }) => {
       router.push("/auth/login");
     } catch (err) {
       console.log("Error:", err);
-      error(err.response.data);
+      error(err.response.data.error);
       dispatch({
         type: "REGISTER",
         isLoading: false,
@@ -63,14 +63,14 @@ export const AuthProvider = ({ children }) => {
         type: "LOGIN",
         isLoading: true,
       });
-      const { response } = await apiClient.post("/auth/login", { email, password });
+      const { data } = await apiClient.post("/auth/login", { email, password });
       dispatch({
         type: "LOGIN",
-        payload: response.data,
+        payload: data.user,
         isLoggedIn: true,
       });
-      StorageServices.setUser(JSON.stringify(response.data));
-      success(response.message);
+      StorageServices.setUser(JSON.stringify(data.user));
+      success(data.message);
       router.push("/user");
     } catch (err) {
       console.log(err);
@@ -88,7 +88,7 @@ export const AuthProvider = ({ children }) => {
     });
     await apiClient.get("/auth/logout");
     StorageServices.removeUser();
-    StorageServices.removeCsrfToken()
+    StorageServices.removeCsrfToken();
     router.push("/auth/login");
   };
 
