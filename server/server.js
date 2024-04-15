@@ -10,6 +10,7 @@ import indexRouter from "./routes/index.js";
 import authRouter from "./routes/auth.js";
 import userRouter from "./routes/user.js";
 import csrfRouter from "./routes/csrf.js";
+import profileRouter from "./routes/profile.js";
 
 // create express app
 const app = express();
@@ -31,6 +32,7 @@ app.use("/api", csrfRouter);
 app.use("/api", indexRouter);
 app.use("/api/auth/", authRouter);
 app.use("/api/", userRouter);
+app.use("/api/", profileRouter);
 
 // port
 const port = process.env.PORT || 8000;

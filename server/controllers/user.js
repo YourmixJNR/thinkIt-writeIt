@@ -29,8 +29,8 @@ export const updateUser = async (req, res) => {
   try {
     const id = req.auth._id;
     const { username, name, bio, favoriteContent, hireable, socialMedia } =
-    req.body;
-      if (!{ id }) {
+      req.body;
+    if (!{ id }) {
       return res.status(401).json({
         message: "Unauthorized",
         error: "No user token provided",
