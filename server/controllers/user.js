@@ -28,22 +28,30 @@ export const currentUser = async (req, res) => {
 export const updateUser = async (req, res) => {
   try {
     const id = req.auth._id;
-    const { bio } = req.body;
-    if (!{ id }) {
+    const { username, name, bio, favoriteContent, hireable, socialMedia } =
+    req.body;
+      if (!{ id }) {
       return res.status(401).json({
         message: "Unauthorized",
         error: "No user token provided",
       });
     }
-    if (!bio) {
+    if (
+      !username &&
+      !name &&
+      !bio &&
+      !favoriteContent &&
+      !hireable &&
+      !socialMedia
+    ) {
       return res.status(401).json({
         message: "Bad request",
-        error: "Bio required",
+        error: "Fields can't be empty",
       });
     }
     await User.findOneAndUpdate(
       { id },
-      { bio },
+      { username, name, bio, favoriteContent, hireable, socialMedia },
       {
         new: true,
       }

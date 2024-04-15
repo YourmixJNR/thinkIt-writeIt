@@ -3,16 +3,16 @@ import { Schema } from "mongoose";
 
 const userSchema = new Schema(
   {
-    username: {
-      type: String,
-      trim: true,
-      required: true,
-    },
     email: {
       type: String,
       trim: true,
       required: true,
       unique: true,
+    },
+    username: {
+      type: String,
+      trim: true,
+      required: true,
     },
     password: {
       type: String,
@@ -20,22 +20,44 @@ const userSchema = new Schema(
       min: 6,
       max: 64,
     },
+    name: {
+      type: String,
+    },
     picture: {
       type: String,
       default: "https://i.ibb.co/FV1yg3g/customer.png",
     },
     bio: {
       type: String,
-      max: 250,
     },
-    role: {
-      type: [String],
-      default: "Subscriber",
-      enum: ["Subscriber", "Instructor", "Admin"],
+    favoriteContent: {
+      type: String,
     },
-    stripe_account_id: { type: String },
-    stripe_seller: {},
-    stripeSession: {},
+    hireable: {
+      type: Boolean,
+    },
+    socialMedia: {
+      facebook: {
+        type: String,
+        trim: true,
+        unique: true,
+      },
+      instagram: {
+        type: String,
+        trim: true,
+        unique: true,
+      },
+      twitter: {
+        type: String,
+        trim: true,
+        unique: true,
+      },
+      linkedin: {
+        type: String,
+        trim: true,
+        unique: true,
+      },
+    },
   },
   { timestamps: true }
 );
