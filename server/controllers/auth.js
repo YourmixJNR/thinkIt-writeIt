@@ -9,12 +9,12 @@ const generateToken = (id) => {
 
 export const register = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { email, password } = req.body;
 
-    if (!username || !email) {
+    if (!email) {
       return res.status(400).json({
         message: "Bad request",
-        error: "Username and email required",
+        error: "Email required",
       });
     }
 
@@ -37,7 +37,6 @@ export const register = async (req, res) => {
     const hashedPassword = await hashPassword(password);
 
     const user = new User({
-      username,
       email,
       password: hashedPassword,
     });

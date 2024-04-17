@@ -13,7 +13,7 @@ const userProfile = async (req, res) => {
       });
     }
     res.status(200).json({
-      message: "Success!",
+      message: "All good!",
       data: getProfile,
     });
   } catch (err) {

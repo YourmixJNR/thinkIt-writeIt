@@ -1,5 +1,4 @@
 // useApiClient.js
-import { useContext } from "react";
 import axios from "axios";
 import { useRouter } from 'next/router';
 import { loadEnv } from "../env/loadEnv";

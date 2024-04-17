@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const registerUser = async ({ username, email, password }) => {
+  const registerUser = async ({ email, password }) => {
     try {
       await getCsrfToken();
       dispatch({
@@ -36,7 +36,6 @@ export const AuthProvider = ({ children }) => {
         isLoading: true,
       });
       const { data } = await apiClient.post(`/auth/register`, {
-        username,
         email,
         password,
       });

@@ -8,16 +8,14 @@ import PasswordInput from "../ui/PasswordInput";
 import { AuthContext } from "../../context/auth/authContext";
 
 const RegisterForm = () => {
-  const [username, setUsername] = useState("a");
-  const [email, setEmail] = useState("qwttq@gmail.com");
-  const [password, setPassword] = useState("121212");
-  const [confirmPassword, setConfirmPassword] = useState("121212");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [emailError, setEmailError] = useState("")
+  const [error, setError] = useState("")
 
   const { registerUser, state } = useContext(AuthContext);
   
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
-  };
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
@@ -31,8 +29,14 @@ const RegisterForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+ // check the format of the email using a regular expression
+ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+ if (!emailRegex.test(email)) {
+   setEmailError('Invalid email format.')
+   return
+ }
+
     const userData = {
-      username: username,
       email: email,
       password: password,
     };
@@ -43,7 +47,6 @@ const RegisterForm = () => {
   };
 
   const clearFormState = () => {
-    setUsername("");
     setEmail("");
     setPassword("");
     setConfirmPassword("");
@@ -59,14 +62,6 @@ const RegisterForm = () => {
           <form onSubmit={handleSubmit}>
             <Flex flexDirection={"column"} gap={"1rem"}>
               <CustomInput
-                label={"Username"}
-                type="text"
-                isRequired={true}
-                placeholder="Enter Username"
-                value={username}
-                onChange={handleUsernameChange}
-              />
-              <CustomInput
                 label={"Email"}
                 type="email"
                 isRequired={true}
@@ -74,6 +69,7 @@ const RegisterForm = () => {
                 value={email}
                 onChange={handleEmailChange}
               />
+              
               <PasswordInput
                 label={"Password"}
                 isRequired={true}
