@@ -31,7 +31,7 @@ const CustomInput = ({
 
     onChange(e);
   };
-  
+
   return (
     <FormControl isRequired={isRequired} isInvalid={emailError}>
       <FormLabel>{label}</FormLabel>
