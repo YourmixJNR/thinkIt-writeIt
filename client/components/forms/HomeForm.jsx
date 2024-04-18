@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Box } from "@chakra-ui/react";
+import { Box, FormHelperText } from "@chakra-ui/react";
 import CustomInput from "../ui/CustomInput";
 import CustomButton from "../ui/CustomButton";
 

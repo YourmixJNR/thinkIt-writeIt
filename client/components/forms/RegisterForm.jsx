@@ -11,11 +11,10 @@ const RegisterForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [emailError, setEmailError] = useState("")
-  const [error, setError] = useState("")
+  const [error, setError] = useState("");
 
   const { registerUser, state } = useContext(AuthContext);
-  
+
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
@@ -28,13 +27,12 @@ const RegisterForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
- // check the format of the email using a regular expression
- const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
- if (!emailRegex.test(email)) {
-   setEmailError('Invalid email format.')
-   return
- }
+    if (password !== confirmPassword) {
+      setError("password and confirm password does not match");
+      return;
+    } else {
+      setError("");
+    }
 
     const userData = {
       email: email,
@@ -69,7 +67,6 @@ const RegisterForm = () => {
                 value={email}
                 onChange={handleEmailChange}
               />
-              
               <PasswordInput
                 label={"Password"}
                 isRequired={true}
@@ -82,6 +79,11 @@ const RegisterForm = () => {
                 value={confirmPassword}
                 onChange={handleConfirmPassword}
               />
+              {error && (
+                <Text as={"p"} textColor={"customOrange"} fontSize={"0.8rem"}>
+                  {error}
+                </Text>
+              )}
               <Box flexShrink={0}>
                 <CustomButton
                   buttonText={"Submit"}

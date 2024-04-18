@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import {
   FormControl,
   FormLabel,
@@ -12,25 +12,38 @@ const CustomInput = ({
   label,
   type,
   isRequired,
-  isInvalid,
   value,
   onChange,
   placeholder,
   helperValue,
-  errorValue,
 }) => {
+  const [emailError, setEmailError] = useState("");
+  const handelEmailChange = (e) => {
+    const newEmail = e.target.value;
+
+    // check the format of the email using a regular expression
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(newEmail)) {
+      setEmailError("Invalid email format.");
+    } else {
+      setEmailError("");
+    }
+
+    onChange(e);
+  };
+  
   return (
-    <FormControl isRequired={isRequired} isInvalid={isInvalid}>
+    <FormControl isRequired={isRequired} isInvalid={emailError}>
       <FormLabel>{label}</FormLabel>
       <Input
         value={value}
         type={type}
-        onChange={onChange}
+        onChange={handelEmailChange}
         placeholder={placeholder}
         borderColor={"gray.400"}
       />
       <FormHelperText>{helperValue}</FormHelperText>
-      <FormErrorMessage>{errorValue}</FormErrorMessage>
+      <FormErrorMessage>{emailError}</FormErrorMessage>
     </FormControl>
   );
 };

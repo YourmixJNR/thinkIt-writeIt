@@ -1,6 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import { Text, Box, FormControl, FormLabel, Input } from "@chakra-ui/react";
+import {
+  FormErrorMessage,
+  Box,
+  FormControl,
+  FormLabel,
+  Input,
+} from "@chakra-ui/react";
 import PropTypes from "prop-types";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
@@ -25,7 +31,7 @@ const PasswordInput = ({ label, isRequired, value, onChange }) => {
   };
 
   return (
-    <FormControl isRequired={isRequired}>
+    <FormControl isRequired={isRequired} isInvalid={passwordError}>
       <FormLabel>{label}</FormLabel>
       <Box position={"relative"}>
         <Input
@@ -46,16 +52,7 @@ const PasswordInput = ({ label, isRequired, value, onChange }) => {
           {showPassword ? <FaEye /> : <FaEyeSlash />}
         </Box>
       </Box>
-      {passwordError && (
-        <Text
-          as={"p"}
-          textColor={"customOrange"}
-          fontSize={"0.8rem"}
-          mt={"4px"}
-        >
-          {passwordError}
-        </Text>
-      )}
+      <FormErrorMessage>{passwordError}</FormErrorMessage>
     </FormControl>
   );
 };
