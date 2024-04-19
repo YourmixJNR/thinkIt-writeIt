@@ -51,8 +51,7 @@ export const useApiClient = () => {
                 axios.get(`${API_ENDPOINT}/auth/logout`).then((data) => {
                     console.log("/401 error > logout");
                     StorageServices.removeUser();
-                    StorageServices.removeAuth();
-                    router.push("/login");
+                    router.push("/auth/login");
                     resolve(data);
                 }).catch((err) => {
                     console.log("AXIOS INTERCEPTORS ERR", err);

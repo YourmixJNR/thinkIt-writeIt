@@ -3,13 +3,8 @@ import User from "../models/user.js";
 export const currentUser = async (req, res) => {
   try {
     const id = req.auth._id;
-    if (!{ id }) {
-      return res.status(401).json({
-        message: "Unauthorized",
-        error: "No user token provided",
-      });
-    }
-    const user = await User.findOne({ id }).select(
+    console.log(req.auth);
+    const user = await User.findOne({ _id: id }).select(
       "-password -role -_id -createdAt -updatedAt -__v"
     );
     res.status(200).json({

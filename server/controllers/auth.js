@@ -1,11 +1,6 @@
 import User from "../models/user.js";
 import { hashPassword, comparePassword } from "../utils/auth.js";
-import jwt from "jsonwebtoken";
-
-// Generate a JWT
-const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "7d" });
-};
+import { generateToken } from "../utils/jwt.js";
 
 export const register = async (req, res) => {
   try {
@@ -86,7 +81,7 @@ export const login = async (req, res) => {
 export const logout = (req, res) => {
   try {
     res.clearCookie("token");
-    res.clearCookie("_csrf");
+    // res.clearCookie("_csrf");
     return res.status(200).json({ message: "Logged Out" });
   } catch (err) {
     console.log(err);

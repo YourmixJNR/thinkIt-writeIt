@@ -39,22 +39,18 @@ const userSchema = new Schema(
       facebook: {
         type: String,
         trim: true,
-        unique: true,
       },
       instagram: {
         type: String,
         trim: true,
-        unique: true,
       },
       twitter: {
         type: String,
         trim: true,
-        unique: true,
       },
       linkedin: {
         type: String,
         trim: true,
-        unique: true,
       },
     },
   },
