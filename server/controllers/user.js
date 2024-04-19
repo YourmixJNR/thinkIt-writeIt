@@ -3,7 +3,6 @@ import User from "../models/user.js";
 export const currentUser = async (req, res) => {
   try {
     const id = req.auth._id;
-    console.log(req.auth);
     const user = await User.findOne({ _id: id }).select(
       "-password -role -_id -createdAt -updatedAt -__v"
     );
@@ -25,12 +24,6 @@ export const updateUser = async (req, res) => {
     const id = req.auth._id;
     const { username, name, bio, favoriteContent, hireable, socialMedia } =
       req.body;
-    if (!{ id }) {
-      return res.status(401).json({
-        message: "Unauthorized",
-        error: "No user token provided",
-      });
-    }
     if (
       !username &&
       !name &&
@@ -45,7 +38,7 @@ export const updateUser = async (req, res) => {
       });
     }
     await User.findOneAndUpdate(
-      { id },
+      { _id : id },
       { username, name, bio, favoriteContent, hireable, socialMedia },
       {
         new: true,
