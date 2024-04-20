@@ -3,6 +3,8 @@ import { Box, Heading, Flex } from "@chakra-ui/react";
 import CustomInput from "../../ui/CustomInput";
 import CustomButton from "../../ui/CustomButton";
 import { UserContext } from "../../../context/user/userContext";
+import CustomFlexInput from "../../ui/CustomFlexInput";
+import CustomTextarea from "../../ui/CustomTextarea";
 
 const UpdateProfileForm = () => {
   const { state } = useContext(UserContext);
@@ -62,74 +64,44 @@ const UpdateProfileForm = () => {
                 value={username}
                 onChange={handleUsernameChange}
               />
-              <CustomInput
+              <CustomTextarea
                 label={"Bio"}
                 type="text"
                 placeholder="Enter Short Bio"
                 value={bio}
                 onChange={handleBioChange}
               />
-             <Box>
-             <CustomInput
+        
+              <CustomFlexInput 
                 label={"Facebook"}
                 type="text"
                 placeholder="Facebook Link"
                 value={facebook}
-                onChange={handleFacebookChange}
-                controlStyle={{
-                  display: "flex",
-                  alignItems: "center",
-                }}
-                labelStyle={{
-                  marginBottom: "0px",
-                }}
-              />
-              <CustomInput
+                onChange={handleFacebookChange}/>
+              <CustomFlexInput
                 label={"Instagram"}
                 type="text"
                 placeholder="Instagram Link"
                 value={instagram}
                 onChange={handleInstagramChange}
-                controlStyle={{
-                  display: "flex",
-                  alignItems: "center",
-                }}
-                labelStyle={{
-                  marginBottom: "0px",
-                }}
               />
-              <CustomInput
+              <CustomFlexInput
                 label={"Twitter"}
                 type="text"
                 placeholder="Twitter Link"
                 value={twitter}
                 onChange={handleTwitterChange}
-                controlStyle={{
-                  display: "flex",
-                  alignItems: "center",
-                }}
-                labelStyle={{
-                  marginBottom: "0px",
-                }}
                 inputStyle ={{
                   width: "50px"
                 }}
               />
-              <CustomInput
+              <CustomFlexInput
                 label={"LinkedIn"}
                 type="text"
                 placeholder="LinkedIn Link"
                 value={linkedIn}
                 onChange={handleLinkedInChange}
-                controlStyle={{
-                  display: "flex",
-                  alignItems: "center",
-                }}
-                labelStyle={{
-                  marginBottom: "0px",
-                }}
               />
-             </Box>
 
               <Box flexShrink={0}>
                 <CustomButton
