@@ -33,7 +33,7 @@ const User = () => {
 
   return (
     <Box as="section" py={"2rem"} px={{ base: "1rem", lg: "5rem" }}>
-      <Flex>
+      <Flex justifyContent={"space-between"}>
         <Box>
           <Box>
             <Image
@@ -45,9 +45,11 @@ const User = () => {
             <Heading as={"h2"}>{user.name}</Heading>
             <Text>{user.username}</Text>
           </Box>
-            <UpdateProfileForm />
+          <UpdateProfileForm />
         </Box>
-        <Box></Box>
+        <Box>
+          <Heading as={"h2"}>Your Favorite Content</Heading>
+        </Box>
       </Flex>
     </Box>
   );

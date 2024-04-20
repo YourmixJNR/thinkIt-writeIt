@@ -1,8 +1,4 @@
-import {
-  FormControl,
-  FormLabel,
-  Input,
- } from "@chakra-ui/react";
+import { FormControl, FormLabel, Input } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 
 const CustomInput = ({
@@ -12,20 +8,16 @@ const CustomInput = ({
   value,
   onChange,
   placeholder,
-  controlStyle,
-  labelStyle,
-  inputStyle
 }) => {
   return (
-    <FormControl isRequired={isRequired} style={controlStyle}>
-      <FormLabel style={labelStyle}>{label}</FormLabel>
+    <FormControl isRequired={isRequired}>
+      <FormLabel>{label}</FormLabel>
       <Input
         value={value}
         type={type}
         onChange={onChange}
         placeholder={placeholder}
         borderColor={"gray.400"}
-        style={inputStyle}
       />
     </FormControl>
   );

@@ -2,10 +2,9 @@ import React, { useContext } from "react";
 import { useState } from "react";
 import NextLink from "next/link";
 import { Box, Flex, Heading, Text, Link } from "@chakra-ui/react";
-// import CustomInput from "../ui/CustomInput";
-import CustomEmailInput from "../ui/CustomEmailInput";
+import CustomEmailInput from "../ui/inputs/CustomEmailInput";
 import CustomButton from "../ui/CustomButton";
-import PasswordInput from "../ui/PasswordInput";
+import PasswordInput from "../ui/inputs/PasswordInput";
 import { AuthContext } from "../../context/auth/authContext";
 
 const RegisterForm = () => {

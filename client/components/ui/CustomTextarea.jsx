@@ -8,6 +8,7 @@ const CustomTextarea = ({
   value,
   onChange,
   placeholder,
+  rows
 }) => {
   return (
     <FormControl isRequired={isRequired}>
@@ -18,6 +19,7 @@ const CustomTextarea = ({
         onChange={onChange}
         placeholder={placeholder}
         borderColor={"gray.400"}
+        rows={rows}
       />
     </FormControl>
   );
@@ -30,6 +32,7 @@ CustomTextarea.propTypes = {
   value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
+  rows: PropTypes.string
 };
 
 export default CustomTextarea;

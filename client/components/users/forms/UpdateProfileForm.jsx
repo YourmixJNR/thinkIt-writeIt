@@ -1,9 +1,8 @@
 import { useState, useContext } from "react";
 import { Box, Heading, Flex } from "@chakra-ui/react";
-import CustomInput from "../../ui/CustomInput";
+import CustomInput from "../../ui/inputs/CustomInput";
 import CustomButton from "../../ui/CustomButton";
 import { UserContext } from "../../../context/user/userContext";
-import CustomFlexInput from "../../ui/CustomFlexInput";
 import CustomTextarea from "../../ui/CustomTextarea";
 
 const UpdateProfileForm = () => {
@@ -65,44 +64,45 @@ const UpdateProfileForm = () => {
                 onChange={handleUsernameChange}
               />
               <CustomTextarea
-                label={"Bio"}
+                label={"About Me"}
                 type="text"
                 placeholder="Enter Short Bio"
                 value={bio}
                 onChange={handleBioChange}
+                rows={"5"}
               />
-        
-              <CustomFlexInput 
-                label={"Facebook"}
-                type="text"
-                placeholder="Facebook Link"
-                value={facebook}
-                onChange={handleFacebookChange}/>
-              <CustomFlexInput
-                label={"Instagram"}
-                type="text"
-                placeholder="Instagram Link"
-                value={instagram}
-                onChange={handleInstagramChange}
-              />
-              <CustomFlexInput
-                label={"Twitter"}
-                type="text"
-                placeholder="Twitter Link"
-                value={twitter}
-                onChange={handleTwitterChange}
-                inputStyle ={{
-                  width: "50px"
-                }}
-              />
-              <CustomFlexInput
-                label={"LinkedIn"}
-                type="text"
-                placeholder="LinkedIn Link"
-                value={linkedIn}
-                onChange={handleLinkedInChange}
-              />
-
+              <Flex gap={"2rem"} alignItems={"center"}>
+                <CustomInput
+                  label={"Facebook"}
+                  type="text"
+                  placeholder="Facebook Link"
+                  value={facebook}
+                  onChange={handleFacebookChange}
+                />
+                <CustomInput
+                  label={"Instagram"}
+                  type="text"
+                  placeholder="Instagram Link"
+                  value={instagram}
+                  onChange={handleInstagramChange}
+                />
+              </Flex>
+              <Flex gap={"2rem"} alignItems={"center"}>
+                <CustomInput
+                  label={"Twitter"}
+                  type="text"
+                  placeholder="Twitter Link"
+                  value={twitter}
+                  onChange={handleTwitterChange}
+                />
+                <CustomInput
+                  label={"LinkedIn"}
+                  type="text"
+                  placeholder="LinkedIn Link"
+                  value={linkedIn}
+                  onChange={handleLinkedInChange}
+                />
+              </Flex>
               <Box flexShrink={0}>
                 <CustomButton
                   buttonText={"Submit"}

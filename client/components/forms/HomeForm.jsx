@@ -1,8 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import { Box, FormHelperText } from "@chakra-ui/react";
-// import CustomInput from "../ui/CustomInput";
-import CustomEmailInput from "../ui/CustomEmailInput";
+import { Box } from "@chakra-ui/react";
+import CustomEmailInput from "../ui/inputs/CustomEmailInput";
 import CustomButton from "../ui/CustomButton";
 
 const HomeForm = () => {
