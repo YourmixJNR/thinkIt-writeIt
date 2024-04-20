@@ -1,11 +1,8 @@
-import { useState } from "react";
 import {
   FormControl,
   FormLabel,
   Input,
-  FormHelperText,
-  FormErrorMessage,
-} from "@chakra-ui/react";
+ } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 
 const CustomInput = ({
@@ -15,35 +12,21 @@ const CustomInput = ({
   value,
   onChange,
   placeholder,
-  helperValue,
+  controlStyle,
+  labelStyle,
+  inputStyle
 }) => {
-  const [emailError, setEmailError] = useState("");
-  const handelEmailChange = (e) => {
-    const newEmail = e.target.value;
-
-    // check the format of the email using a regular expression
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(newEmail)) {
-      setEmailError("Invalid email format.");
-    } else {
-      setEmailError("");
-    }
-
-    onChange(e);
-  };
-
   return (
-    <FormControl isRequired={isRequired} isInvalid={emailError}>
-      <FormLabel>{label}</FormLabel>
+    <FormControl isRequired={isRequired} style={controlStyle}>
+      <FormLabel style={labelStyle}>{label}</FormLabel>
       <Input
         value={value}
         type={type}
-        onChange={handelEmailChange}
+        onChange={onChange}
         placeholder={placeholder}
         borderColor={"gray.400"}
+        style={inputStyle}
       />
-      <FormHelperText>{helperValue}</FormHelperText>
-      <FormErrorMessage>{emailError}</FormErrorMessage>
     </FormControl>
   );
 };
@@ -52,12 +35,9 @@ CustomInput.propTypes = {
   label: PropTypes.string,
   type: PropTypes.string.isRequired,
   isRequired: PropTypes.bool,
-  isRequired: PropTypes.any,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
-  placeholder: PropTypes.string.isRequired,
-  helperValue: PropTypes.node,
-  errorValue: PropTypes.node,
+  placeholder: PropTypes.string,
 };
 
 export default CustomInput;

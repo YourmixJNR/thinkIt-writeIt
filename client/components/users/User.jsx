@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
-import { Box, Flex, Text, Spinner } from "@chakra-ui/react";
+import { Box, Flex, Text, Heading, Spinner } from "@chakra-ui/react";
 import Image from "next/image";
 import { UserContext } from "../../context/user/userContext";
+import UpdateProfileForm from "./forms/UpdateProfileForm";
 
 const User = () => {
   const { state } = useContext(UserContext);
@@ -34,9 +35,19 @@ const User = () => {
     <Box as="section" py={"2rem"} px={{ base: "1rem", lg: "5rem" }}>
       <Flex>
         <Box>
-          <Text>{user.email}</Text>
-          <Image src={user.picture} alt="user-photo" height={35} width={35} />
+          <Box>
+            <Image
+              src={user.picture}
+              alt="user-photo"
+              height={300}
+              width={300}
+            />
+            <Heading as={"h2"}>{user.name}</Heading>
+            <Text>{user.username}</Text>
+          </Box>
+            <UpdateProfileForm />
         </Box>
+        <Box></Box>
       </Flex>
     </Box>
   );

@@ -24,7 +24,7 @@ const userSchema = new Schema(
     },
     picture: {
       type: String,
-      default: "https://i.ibb.co/FV1yg3g/customer.png",
+      default: "https://i.ibb.co/DWd2KqS/user.png",
     },
     bio: {
       type: String,

@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { useState } from "react";
 import { Box, Flex, Heading } from "@chakra-ui/react";
-import CustomInput from "../ui/CustomInput";
+// import CustomInput from "../ui/CustomInput";
+import CustomEmailInput from "../ui/CustomEmailInput";
 import CustomButton from "../ui/CustomButton";
 import PasswordInput from "../ui/PasswordInput";
 import { AuthContext } from "../../context/auth/authContext";
@@ -47,7 +48,7 @@ const LoginForm = () => {
         <Box borderRadius={"1rem"} p={"0.5rem"}>
           <form onSubmit={handleSubmit}>
             <Flex flexDirection={"column"} gap={"1rem"}>
-              <CustomInput
+              <CustomEmailInput
                 label={"Email"}
                 type="email"
                 isRequired={true}
