@@ -1,9 +1,10 @@
-import React, { createContext, useReducer, useEffect } from "react";
+import React, { createContext, useReducer, useEffect, useContext } from "react";
 import authReducer from "../auth/authReducer";
 import { useApiClient } from "../../hooks/useApiClient";
 import { useCustomToast } from "../../hooks/useCustomToast";
 import { StorageServices } from "../../libs/storage";
 import { useRouter } from "next/router";
+import { UserContext } from "../user/userContext";
 
 export const AuthContext = createContext();
 
@@ -14,6 +15,8 @@ export const initialState = {
 
 export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
+
+  const { getCurrentUser } = useContext(UserContext);
 
   const apiClient = useApiClient();
   const { success, error } = useCustomToast();
@@ -70,6 +73,7 @@ export const AuthProvider = ({ children }) => {
       });
       StorageServices.setUser(JSON.stringify(data.user));
       success(data.message);
+      await getCurrentUser();
       router.push("/user");
     } catch (err) {
       console.log(err);

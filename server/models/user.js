@@ -48,7 +48,7 @@ const userSchema = new Schema(
         type: String,
         trim: true,
       },
-      linkedin: {
+      linkedIn: {
         type: String,
         trim: true,
       },

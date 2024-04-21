@@ -9,13 +9,12 @@ const UpdateProfileForm = () => {
   const { state, updateSettings } = useContext(UserContext);
   const { user } = state;
 
-  const [name, setName] = useState(user.name);
-  const [username, setUsername] = useState(user.username);
-  // const [hireable, setHireable] = useState(user.hireable);
-  const [facebook, setFacebook] = useState(user.facebook);
-  const [instagram, setInstagram] = useState(user.instagram);
-  const [twitter, setTwitter] = useState(user.twitter);
-  const [linkedIn, setLinkedIn] = useState(user.linkedIn);
+  const [name, setName] = useState(user?.name || "");
+  const [username, setUsername] = useState(user?.username || "");
+  const [facebook, setFacebook] = useState(user.socialMedia?.facebook || "");
+  const [instagram, setInstagram] = useState(user.socialMedia?.instagram || "");
+  const [twitter, setTwitter] = useState(user.socialMedia?.twitter || "");
+  const [linkedIn, setLinkedIn] = useState(user.socialMedia?.linkedIn || "");
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -51,10 +50,9 @@ const UpdateProfileForm = () => {
       },
     };
 
-    console.log(updateData)
+    console.log(updateData);
 
-    await updateSettings(updateData)
-
+    await updateSettings(updateData);
   };
 
   return (

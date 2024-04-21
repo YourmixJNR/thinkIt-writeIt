@@ -34,17 +34,42 @@ const User = () => {
 
   return (
     <Box as="section" py={"2rem"} px={{ base: "1rem", lg: "5rem" }}>
-      <Flex gap={"7rem"}>
+      <Flex
+        gap={{
+          base: "0rem",
+          lg: "7rem",
+        }}
+        flexDirection={{
+          base: "column",
+          lg: "row",
+        }}
+      >
         <Box width={"100%"}>
-          <Flex alignItems={"center"}>
+          <Flex
+            flexDir={"column"}
+            alignItems={{
+              base: "center",
+              lg: "flex-start",
+            }}
+          >
             <Image
               src={user.picture}
               alt="user-photo"
               height={300}
               width={300}
             />
-            <Heading as={"h2"}>{user.name}</Heading>
-            <Text>{user.username}</Text>
+            <Box
+              padding={"1rem 0rem"}
+              textAlign={{
+                base: "center",
+                lg: "left",
+              }}
+            >
+              <Heading as={"h2"} fontWeight={"600"} fontSize={"2rem"}>
+                {user.name}
+              </Heading>
+              <Text fontSize={"1.5rem"}>{user.username}</Text>
+            </Box>
           </Flex>
           <UpdateProfileForm />
         </Box>

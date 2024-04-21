@@ -8,8 +8,8 @@ const UpdateFavoriteContentForm = () => {
   const { state } = useContext(UserContext);
   const { user } = state;
 
-  const [content, setContent] = useState(user.name);
-  const [bio, setBio] = useState(user.bio);
+  const [bio, setBio] = useState(user?.bio || "");
+  const [content, setContent] = useState(user?.content || "");
 
   const handleContentChange = (e) => {
     setContent(e.target.value);
@@ -21,12 +21,14 @@ const UpdateFavoriteContentForm = () => {
   return (
     <Box as="section">
       <Box w={"100%"}>
-        <Heading as={"h3"} py={"1.5rem"}>Edit profile</Heading>
+        <Heading as={"h3"} py={"1.5rem"}>
+          Edit profile
+        </Heading>
         <Box borderRadius={"1rem"} p={"0.5rem"}>
           <form>
             <Flex flexDirection={"column"} gap={"2rem"}>
               <CustomTextarea
-              label={"About Me"}
+                label={"About Me"}
                 type="text"
                 placeholder="Enter Short Bio"
                 value={bio}

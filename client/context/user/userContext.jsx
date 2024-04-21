@@ -33,20 +33,19 @@ export const UserProvider = ({ children }) => {
     }
   };
 
-  const updateSettings = async (updateData ) => {
+  const updateSettings = async (updateData) => {
     try {
       dispatch({
         type: "UPDATE_USER",
         isLoading: true,
       });
-      const { data } = await apiClient.post("/update-user", 
-        updateData,
-      );
+      const { data } = await apiClient.post("/update-user", updateData);
       dispatch({
         type: "UPDATE_USER",
         user: data.message,
         isLoading: false,
       });
+      await getCurrentUser();
       success(data.message);
     } catch (err) {
       console.log(err);
@@ -63,7 +62,9 @@ export const UserProvider = ({ children }) => {
       value={{
         state,
         dispatch,
-        updateSettings
+        getCurrentUser,
+        getCurrentUser,
+        updateSettings,
       }}
     >
       {children}
