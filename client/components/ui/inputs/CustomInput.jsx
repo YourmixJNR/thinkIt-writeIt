@@ -1,4 +1,4 @@
-import { FormControl, FormLabel, Input } from "@chakra-ui/react";
+import { Box, Flex, FormControl, FormLabel, Input } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 
 const CustomInput = ({
@@ -8,10 +8,20 @@ const CustomInput = ({
   value,
   onChange,
   placeholder,
+  icon,
 }) => {
   return (
     <FormControl isRequired={isRequired}>
-      <FormLabel>{label}</FormLabel>
+      {icon ? (
+        <Flex alignItems={"center"} gap={"0.5rem"}>
+          <Box marginBottom={"2"} fontSize={"1.3rem"}>
+            {icon}
+          </Box>
+          <FormLabel>{label}</FormLabel>
+        </Flex>
+      ) : (
+        <FormLabel>{label}</FormLabel>
+      )}
       <Input
         value={value}
         type={type}
@@ -30,6 +40,7 @@ CustomInput.propTypes = {
   value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
+  icon: PropTypes.any,
 };
 
 export default CustomInput;

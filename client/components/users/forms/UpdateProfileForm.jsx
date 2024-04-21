@@ -3,16 +3,15 @@ import { Box, Heading, Flex } from "@chakra-ui/react";
 import CustomInput from "../../ui/inputs/CustomInput";
 import CustomButton from "../../ui/CustomButton";
 import { UserContext } from "../../../context/user/userContext";
-import CustomTextarea from "../../ui/CustomTextarea";
+import { CiFacebook, CiInstagram, CiTwitter, CiLinkedin } from "react-icons/ci";
 
 const UpdateProfileForm = () => {
-  const { state } = useContext(UserContext);
+  const { state, updateSettings } = useContext(UserContext);
   const { user } = state;
 
   const [name, setName] = useState(user.name);
   const [username, setUsername] = useState(user.username);
-  const [bio, setBio] = useState(user.bio);
-  const [hireable, setHireable] = useState(user.hireable);
+  // const [hireable, setHireable] = useState(user.hireable);
   const [facebook, setFacebook] = useState(user.facebook);
   const [instagram, setInstagram] = useState(user.instagram);
   const [twitter, setTwitter] = useState(user.twitter);
@@ -24,9 +23,7 @@ const UpdateProfileForm = () => {
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
   };
-  const handleBioChange = (e) => {
-    setBio(e.target.value);
-  };
+
   const handleFacebookChange = (e) => {
     setFacebook(e.target.value);
   };
@@ -40,15 +37,35 @@ const UpdateProfileForm = () => {
     setLinkedIn(e.target.value);
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const updateData = {
+      name: name,
+      username: username,
+      socialMedia: {
+        facebook: facebook,
+        instagram: instagram,
+        twitter: twitter,
+        linkedIn: linkedIn,
+      },
+    };
+
+    console.log(updateData)
+
+    await updateSettings(updateData)
+
+  };
+
   return (
     <Box as="section">
-      <Box w={"100%"} maxW={"550px"} m={"auto"}>
+      <Box w={"100%"}>
         <Heading as={"h3"} py={"1.5rem"}>
-          Update Profile
+          Personal settings
         </Heading>
         <Box borderRadius={"1rem"} p={"0.5rem"}>
-          <form>
-            <Flex flexDirection={"column"} gap={"1rem"}>
+          <form onSubmit={handleSubmit}>
+            <Flex flexDirection={"column"} gap={"2rem"}>
               <CustomInput
                 label={"Name"}
                 type="text"
@@ -63,14 +80,6 @@ const UpdateProfileForm = () => {
                 value={username}
                 onChange={handleUsernameChange}
               />
-              <CustomTextarea
-                label={"About Me"}
-                type="text"
-                placeholder="Enter Short Bio"
-                value={bio}
-                onChange={handleBioChange}
-                rows={"5"}
-              />
               <Flex gap={"2rem"} alignItems={"center"}>
                 <CustomInput
                   label={"Facebook"}
@@ -78,6 +87,7 @@ const UpdateProfileForm = () => {
                   placeholder="Facebook Link"
                   value={facebook}
                   onChange={handleFacebookChange}
+                  icon={<CiFacebook />}
                 />
                 <CustomInput
                   label={"Instagram"}
@@ -85,6 +95,7 @@ const UpdateProfileForm = () => {
                   placeholder="Instagram Link"
                   value={instagram}
                   onChange={handleInstagramChange}
+                  icon={<CiInstagram />}
                 />
               </Flex>
               <Flex gap={"2rem"} alignItems={"center"}>
@@ -94,6 +105,7 @@ const UpdateProfileForm = () => {
                   placeholder="Twitter Link"
                   value={twitter}
                   onChange={handleTwitterChange}
+                  icon={<CiTwitter />}
                 />
                 <CustomInput
                   label={"LinkedIn"}
@@ -101,11 +113,12 @@ const UpdateProfileForm = () => {
                   placeholder="LinkedIn Link"
                   value={linkedIn}
                   onChange={handleLinkedInChange}
+                  icon={<CiLinkedin />}
                 />
               </Flex>
               <Box flexShrink={0}>
                 <CustomButton
-                  buttonText={"Submit"}
+                  buttonText={"Update"}
                   type={"submit"}
                   // isLoading={state.isLoading}
                 />

@@ -3,6 +3,7 @@ import { Box, Flex, Text, Heading, Spinner } from "@chakra-ui/react";
 import Image from "next/image";
 import { UserContext } from "../../context/user/userContext";
 import UpdateProfileForm from "./forms/UpdateProfileForm";
+import UpdateFavoriteContentForm from "./forms/UpdateFavoriteContentForm";
 
 const User = () => {
   const { state } = useContext(UserContext);
@@ -33,9 +34,9 @@ const User = () => {
 
   return (
     <Box as="section" py={"2rem"} px={{ base: "1rem", lg: "5rem" }}>
-      <Flex justifyContent={"space-between"}>
-        <Box>
-          <Box>
+      <Flex gap={"7rem"}>
+        <Box width={"100%"}>
+          <Flex alignItems={"center"}>
             <Image
               src={user.picture}
               alt="user-photo"
@@ -44,11 +45,11 @@ const User = () => {
             />
             <Heading as={"h2"}>{user.name}</Heading>
             <Text>{user.username}</Text>
-          </Box>
+          </Flex>
           <UpdateProfileForm />
         </Box>
-        <Box>
-          <Heading as={"h2"}>Your Favorite Content</Heading>
+        <Box width={"100%"}>
+          <UpdateFavoriteContentForm />
         </Box>
       </Flex>
     </Box>

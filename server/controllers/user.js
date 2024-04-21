@@ -32,7 +32,7 @@ export const updateUser = async (req, res) => {
       !hireable &&
       !socialMedia
     ) {
-      return res.status(401).json({
+      return res.status(400).json({
         message: "Bad request",
         error: "Fields can't be empty",
       });

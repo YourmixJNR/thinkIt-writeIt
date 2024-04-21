@@ -1,6 +1,7 @@
 import userReducer from "../user/userReducer";
 import { useApiClient } from "../../hooks/useApiClient";
 import { createContext, useEffect, useReducer } from "react";
+import { useCustomToast } from "../../hooks/useCustomToast";
 
 export const UserContext = createContext();
 
@@ -13,6 +14,7 @@ export const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(userReducer, initialState);
 
   const apiClient = useApiClient();
+  const { success, error } = useCustomToast();
 
   const getCurrentUser = async () => {
     try {
@@ -24,10 +26,31 @@ export const UserProvider = ({ children }) => {
       dispatch({
         type: "GET_USER",
         payload: data.data,
-        isLoading: false
+        isLoading: false,
       });
     } catch (err) {
       console.log(err);
+    }
+  };
+
+  const updateSettings = async (updateData ) => {
+    try {
+      dispatch({
+        type: "UPDATE_USER",
+        isLoading: true,
+      });
+      const { data } = await apiClient.post("/update-user", 
+        updateData,
+      );
+      dispatch({
+        type: "UPDATE_USER",
+        user: data.message,
+        isLoading: false,
+      });
+      success(data.message);
+    } catch (err) {
+      console.log(err);
+      error(err.response.data.error);
     }
   };
 
@@ -40,6 +63,7 @@ export const UserProvider = ({ children }) => {
       value={{
         state,
         dispatch,
+        updateSettings
       }}
     >
       {children}

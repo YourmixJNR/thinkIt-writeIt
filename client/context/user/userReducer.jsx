@@ -6,6 +6,12 @@ const userReducer = (state, action) => {
         user: action.payload,
         isLoading: action.isLoading,
       };
+      case "UPDATE_USER" : 
+      return {
+        ...state,
+        user: action.payload,
+        isLoading: action.isLoading,
+      }
     default:
       return state;
   }
