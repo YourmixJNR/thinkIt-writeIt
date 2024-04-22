@@ -53,16 +53,11 @@ export const UserProvider = ({ children }) => {
     }
   };
 
-  // useEffect(() => {
-  //   getCurrentUser();
-  // }, []);
-
   return (
     <UserContext.Provider
       value={{
         state,
         dispatch,
-        getCurrentUser,
         getCurrentUser,
         updateSettings,
       }}

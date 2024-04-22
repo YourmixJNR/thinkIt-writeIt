@@ -10,11 +10,12 @@ const User = () => {
   const { user, isLoading } = state;
 
   useEffect(() => {
-    getCurrentUser();
+    if (isLoading || !user) {
+      getCurrentUser();
+    }
   }, []);
 
   if (isLoading || !user) {
-    console.log(isLoading);
     return (
       <Box
         position={"relative"}
@@ -33,10 +34,6 @@ const User = () => {
       </Box>
     );
   }
-
-  // useEffect(() => {
-  //   getCurrentUser()
-  // }, [])
 
   console.log("I'm the state reducer :", user, isLoading);
 
