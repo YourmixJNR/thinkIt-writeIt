@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Box, Flex, Text, Heading, Spinner } from "@chakra-ui/react";
 import Image from "next/image";
 import { UserContext } from "../../context/user/userContext";
@@ -6,8 +6,12 @@ import UpdateProfileForm from "./forms/UpdateProfileForm";
 import UpdateFavoriteContentForm from "./forms/UpdateFavoriteContentForm";
 
 const User = () => {
-  const { state } = useContext(UserContext);
+  const { state, getCurrentUser } = useContext(UserContext);
   const { user, isLoading } = state;
+
+  useEffect(() => {
+    getCurrentUser();
+  }, []);
 
   if (isLoading || !user) {
     console.log(isLoading);
@@ -29,6 +33,10 @@ const User = () => {
       </Box>
     );
   }
+
+  // useEffect(() => {
+  //   getCurrentUser()
+  // }, [])
 
   console.log("I'm the state reducer :", user, isLoading);
 

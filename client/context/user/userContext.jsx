@@ -53,9 +53,9 @@ export const UserProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    getCurrentUser();
-  }, []);
+  // useEffect(() => {
+  //   getCurrentUser();
+  // }, []);
 
   return (
     <UserContext.Provider
