@@ -72,8 +72,8 @@ export const AuthProvider = ({ children }) => {
         isLoggedIn: true,
       });
       StorageServices.setUser(JSON.stringify(data.user));
-      success(data.message);
       await getCurrentUser();
+      success(data.message);
       router.push("/user");
     } catch (err) {
       console.log(err);

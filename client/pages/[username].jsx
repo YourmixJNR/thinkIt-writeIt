@@ -1,6 +1,6 @@
 import serverApiClient from "../libs/serverApiClient";
-import Profile from "../components/Profile";
-import Layout from "../components/layout";
+import Profile from "../components/profile/Profile";
+import ProfileLayout from "../components/profile/layout";
 
 const UserProfile = ({ profile }) => {
 
@@ -11,9 +11,9 @@ const UserProfile = ({ profile }) => {
   console.log(profile.name)
 
   return (
-    <Layout>
+    <ProfileLayout>
       <Profile profile={profile} />
-    </Layout>
+    </ProfileLayout>
   );
 };
 
