@@ -11,5 +11,3 @@ const Index = () => {
 };
 
 export default Index;
-
-export { getServerSideProps } from "../../src/Chakra";

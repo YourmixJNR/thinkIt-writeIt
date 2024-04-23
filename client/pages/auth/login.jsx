@@ -11,5 +11,3 @@ const Login = () => {
 };
 
 export default Login;
-
-export { getServerSideProps } from "../../src/Chakra";
