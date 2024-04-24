@@ -3,12 +3,9 @@ import Profile from "../components/profile/Profile";
 import ProfileLayout from "../components/profile/layout";
 
 const UserProfile = ({ profile }) => {
-
   if (!profile) {
     return <div>User not found</div>;
   }
-
-  console.log(profile.name)
 
   return (
     <ProfileLayout>

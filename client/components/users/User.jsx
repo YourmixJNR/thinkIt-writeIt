@@ -2,8 +2,8 @@ import React, { useContext, useEffect } from "react";
 import { Box, Flex, Text, Heading, Spinner } from "@chakra-ui/react";
 import Image from "next/image";
 import { UserContext } from "../../context/user/userContext";
-import UpdateProfileForm from "./forms/UpdateProfileForm";
-import UpdateFavoriteContentForm from "./forms/UpdateFavoriteContentForm";
+import PersonalSettingsForm from "./forms/PersonalSettingsForm";
+import EditProfileForm from "./forms/EditProfileForm";
 
 const User = () => {
   const { state, getCurrentUser } = useContext(UserContext);
@@ -76,10 +76,10 @@ const User = () => {
               <Text fontSize={"1.5rem"}>{user.username}</Text>
             </Box>
           </Flex>
-          <UpdateProfileForm />
+          <PersonalSettingsForm />
         </Box>
         <Box width={"100%"}>
-          <UpdateFavoriteContentForm />
+          <EditProfileForm />
         </Box>
       </Flex>
     </Box>

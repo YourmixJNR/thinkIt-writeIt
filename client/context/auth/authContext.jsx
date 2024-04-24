@@ -90,9 +90,9 @@ export const AuthProvider = ({ children }) => {
       type: "LOGOUT",
     });
     await apiClient.get("/auth/logout");
+    router.push("/auth/login");
     StorageServices.removeUser();
     StorageServices.removeCsrfToken();
-    router.push("/auth/login");
   };
 
   useEffect(() => {

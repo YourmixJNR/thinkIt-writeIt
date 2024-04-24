@@ -4,18 +4,29 @@ import CustomButton from "../../ui/CustomButton";
 import { UserContext } from "../../../context/user/userContext";
 import CustomTextarea from "../../ui/CustomTextarea";
 
-const UpdateFavoriteContentForm = () => {
-  const { state } = useContext(UserContext);
+const EditProfileForm = () => {
+  const { state, updateSettings } = useContext(UserContext);
   const { user } = state;
 
   const [bio, setBio] = useState(user?.bio || "");
-  const [content, setContent] = useState(user?.content || "");
+  const [content, setContent] = useState(user?.favoriteContent || "");
 
   const handleContentChange = (e) => {
     setContent(e.target.value);
   };
   const handleBioChange = (e) => {
     setBio(e.target.value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const updateData = {
+      bio: bio,
+      favoriteContent: content,
+    };
+
+    await updateSettings(updateData);
   };
 
   return (
@@ -25,7 +36,7 @@ const UpdateFavoriteContentForm = () => {
           Edit profile
         </Heading>
         <Box borderRadius={"1rem"} p={"0.5rem"}>
-          <form>
+          <form onSubmit={handleSubmit}>
             <Flex flexDirection={"column"} gap={"2rem"}>
               <CustomTextarea
                 label={"About Me"}
@@ -37,9 +48,9 @@ const UpdateFavoriteContentForm = () => {
               />
 
               <CustomTextarea
-                label={"Impressum"}
+                label={"Favorite Content"}
                 type="text"
-                placeholder="Markdown not supported"
+                placeholder="Enter shot favorite content"
                 value={content}
                 onChange={handleContentChange}
                 rows={"7"}
@@ -60,4 +71,4 @@ const UpdateFavoriteContentForm = () => {
   );
 };
 
-export default UpdateFavoriteContentForm;
+export default EditProfileForm;

@@ -5,7 +5,7 @@ import CustomButton from "../../ui/CustomButton";
 import { UserContext } from "../../../context/user/userContext";
 import { CiFacebook, CiInstagram, CiTwitter, CiLinkedin } from "react-icons/ci";
 
-const UpdateProfileForm = () => {
+const PersonalSettingsForm = () => {
   const { state, updateSettings } = useContext(UserContext);
   const { user } = state;
 
@@ -49,8 +49,6 @@ const UpdateProfileForm = () => {
         linkedIn: linkedIn,
       },
     };
-
-    console.log(updateData);
 
     await updateSettings(updateData);
   };
@@ -129,4 +127,4 @@ const UpdateProfileForm = () => {
   );
 };
 
-export default UpdateProfileForm;
+export default PersonalSettingsForm;
