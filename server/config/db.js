@@ -1,14 +1,16 @@
 import mongoose from "mongoose";
 
-let dbConnection;
+const URI = process.env.MONGO_URI || "";
+const password = process.env.MONGO_PASSWORD || "";
+const connectionString = URI.replace("<password>", password);
+
 const startDb = async () => {
   try {
-    if (!dbConnection) {
-      await mongoose.connect(process.env.DATABASE_URL);
-    }
-    return dbConnection;
-  } catch (error) {
-    throw new Error(error);
+    await mongoose.connect(connectionString);
+    console.log(`Db connected`);
+  } catch (err) {
+    console.error(err.message);
+    console.error(`Db connection failed`);
   }
 };
 

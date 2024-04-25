@@ -10,7 +10,7 @@ const Profile = ({ profile }) => {
       <Flex
         gap={{
           base: "0rem",
-          lg: "7rem",
+          lg: "2rem",
         }}
         flexDirection={{
           base: "column",
@@ -119,7 +119,28 @@ const Profile = ({ profile }) => {
             </Box>
           </Box>
         </Box>
-        <Box width={"100%"}></Box>
+        <Box width={"100%"}>
+          <Box>
+            {profile?.bio && (
+              <Box>
+                <Heading as={"h3"} py={"1.5rem"}>
+                  About me
+                </Heading>
+                <Text>{profile.bio}</Text>
+              </Box>
+            )}
+          </Box>
+          <Box>
+            {profile?.favoriteContent && (
+              <Box>
+                <Heading as={"h3"} py={"1.5rem"}>
+                  My favorite content
+                </Heading>
+                <Text>{profile.favoriteContent}</Text>
+              </Box>
+            )}
+          </Box>
+        </Box>
       </Flex>
     </Box>
   );
