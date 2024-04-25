@@ -1,5 +1,5 @@
 #env
-development.env
+.env
 
 # Logs
 logs

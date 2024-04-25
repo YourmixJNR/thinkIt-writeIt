@@ -5,12 +5,13 @@ import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import { configDotenv } from "dotenv";
 import { doubleCsrfProtection } from "./config/csrfToken.js";
-configDotenv({ path: "./development.env" }); //  Change to 'production.env' when deploying
 import indexRouter from "./routes/index.js";
 import authRouter from "./routes/auth.js";
 import userRouter from "./routes/user.js";
 import csrfRouter from "./routes/csrf.js";
 import profileRouter from "./routes/profile.js";
+
+configDotenv();
 
 // create express app
 const app = express();
@@ -19,7 +20,13 @@ const app = express();
 startDb();
 
 // apply middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(cookieParser());

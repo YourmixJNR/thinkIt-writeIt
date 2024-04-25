@@ -58,7 +58,11 @@ export const login = async (req, res) => {
       });
     // Check password match
     const match = await comparePassword(password, user.password);
-    if (!match) return res.status(400).send("Incorrect Password");
+    if (!match)
+      return res.status(400).json({
+        message: "Bad request",
+        error: "Incorrect password",
+      });
     const token = generateToken(user._id);
     // user.password = undefined
     const filterUser = await User.findOne({ email }).select(

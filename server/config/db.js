@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import { configDotenv } from "dotenv";
+configDotenv();
 
 const URI = process.env.MONGO_URI || "";
 const password = process.env.MONGO_PASSWORD || "";
