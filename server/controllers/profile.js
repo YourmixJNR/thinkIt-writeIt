@@ -12,7 +12,7 @@ const userProfile = async (req, res) => {
         error: "User not found",
       });
     }
-    res.status(200).json({
+    return res.status(200).json({
       message: "All good!",
       data: getProfile,
     });
