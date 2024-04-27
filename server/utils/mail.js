@@ -7,30 +7,29 @@ const user = process.env.GMAIL_USER;
 const pass = process.env.GMAIL_PASSWORD;
 
 const transporter = nodeMailer.createTransport({
-    host,
-    port,
-    secure: true, 
-    auth: {
-       user,
-       pass,
-    }
-   });
-   
+  host,
+  port,
+  secure: true,
+  auth: {
+    user,
+    pass,
+  },
+});
 
 export async function sendMail(options) {
- const mailOptions = {
+  const mailOptions = {
     from: "admin@thinkItwriteIt.com",
     to: options.recipient,
     subject: options.subject,
-    text: options.content,
- };
+    html: options.htmlContent,
+  };
 
- try {
+  try {
     const info = await transporter.sendMail(mailOptions);
     console.log("Email sent: ", info.response);
     return true;
- } catch (error) {
+  } catch (error) {
     console.log(error);
     return false;
- }
+  }
 }
