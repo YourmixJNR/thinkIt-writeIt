@@ -17,6 +17,7 @@ export const useApiClient = () => {
     }
 
     const apiClient = axios.create({
+        withCredentials: true,
         baseURL: API_ENDPOINT,
         headers: {
             "Content-Type": "application/json",

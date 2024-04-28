@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_ENDPOINT = process.env.SERVER_API_URL || 'http://localhost:3000/api'
+const API_ENDPOINT = process.env.SERVER_API_URL || ""
 
 if (!API_ENDPOINT) {
     throw new Error(
@@ -8,11 +8,12 @@ if (!API_ENDPOINT) {
     );
 }
 
-const serverApiClient = axios.create({
+const useServerApi = axios.create({
+    withCredentials: true,
     baseURL: API_ENDPOINT,
     headers: {
         'Content-Type': 'application/json',
     },
 });
 
-export default serverApiClient;
+export default useServerApi;

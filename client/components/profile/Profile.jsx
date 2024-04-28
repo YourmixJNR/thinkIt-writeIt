@@ -102,7 +102,7 @@ const Profile = ({ profile }) => {
             <Box>
               {profile.socialMedia?.linkedIn && (
                 <Flex alignItems={"center"} gap={"0.5rem"}>
-                  <CiFlexedin fontSize={"1.3rem"} />
+                  <CiLinkedin fontSize={"1.3rem"} />
                   <Link
                     fontSize={"1rem"}
                     as={NextLink}

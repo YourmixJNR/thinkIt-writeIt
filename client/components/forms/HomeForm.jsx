@@ -1,18 +1,31 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import { Box } from "@chakra-ui/react";
 import CustomEmailInput from "../ui/inputs/CustomEmailInput";
 import CustomButton from "../ui/CustomButton";
+import { SubscribeContext } from "../../context/subscribe/subscribeContext";
 
 const HomeForm = () => {
   const [email, setEmail] = useState("");
+
+  const { subscribe, isLoading } = useContext(SubscribeContext);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await subscribe({ email });
+    clearFormState();
+  };
+
+  const clearFormState = () => {
+    setEmail("");
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <Box display={"flex"} gap={"1rem"} flexDirection={"column"}>
         <Box flexShrink={0} w={"100%"} maxW={"500px"}>
           <CustomEmailInput
@@ -24,7 +37,11 @@ const HomeForm = () => {
           />
         </Box>
         <Box flexShrink={0}>
-          <CustomButton buttonText={"Start Now"} />
+          <CustomButton
+            buttonText={"Subscribe"}
+            type={"submit"}
+            isLoading={isLoading}
+          />
         </Box>
       </Box>
     </form>

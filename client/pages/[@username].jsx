@@ -1,4 +1,4 @@
-import serverApiClient from "../libs/serverApiClient";
+import useServerApi from "../libs/useServerApi";
 import Profile from "../components/profile/Profile";
 import ProfileLayout from "../components/profile/layout";
 
@@ -15,16 +15,18 @@ const UserProfile = ({ profile }) => {
 };
 
 export async function getServerSideProps(context) {
-  const { username } = context.params;
+  const { "@username": username } = context.params;
 
-  if (!username || typeof username !== "string") {
+  if (!username || !username.includes("@")) {
     return {
       notFound: true,
     };
   }
 
+  const formattedUsername = username.split("@")[1];
+
   try {
-    const { data } = await serverApiClient.get(`${username}`);
+    const { data } = await useServerApi.get(`${formattedUsername}`);
     const profile = data.data;
     return {
       props: {
