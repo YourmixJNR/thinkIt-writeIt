@@ -28,11 +28,11 @@ export const useApiClient = () => {
         // Do something before request is sent
         const fetchCsrfToken = StorageServices.getCsrfToken()
         if (fetchCsrfToken) {
-            request.headers = { ...request.headers, "_csrf": fetchCsrfToken }
+            request.headers = { ...request.headers, "x-csrf-token": fetchCsrfToken }
         } else {
             request.headers = {
               ...request.headers,
-              "_csrf": request?.headers?._csrf || '',
+              "x-csrf-token": request?.headers?._csrf || '',
             }
           }
         return request;

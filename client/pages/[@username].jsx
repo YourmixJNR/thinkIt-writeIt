@@ -1,16 +1,24 @@
 import useServerApi from "../libs/useServerApi";
 import Profile from "../components/profile/Profile";
 import ProfileLayout from "../components/profile/layout";
+import Head from "next/head";
 
 const UserProfile = ({ profile }) => {
   if (!profile) {
     return <div>User not found</div>;
   }
 
+  const pageTitle = `${profile.name} (@${profile.username}) | thinkIt-writeIt`;
+
   return (
-    <ProfileLayout>
-      <Profile profile={profile} />
-    </ProfileLayout>
+    <>
+      <Head>
+        <title>{pageTitle}</title>
+      </Head>
+      <ProfileLayout>
+        <Profile profile={profile} />
+      </ProfileLayout>
+    </>
   );
 };
 

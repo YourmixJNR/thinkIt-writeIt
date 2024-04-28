@@ -2,9 +2,12 @@ import { doubleCsrf } from "csrf-csrf";
 
 const { generateToken, doubleCsrfProtection } = doubleCsrf({
   getSecret: () => "Secret",
-  cookieName: "_csrf",
+  cookieName: "__Host-psifi.x-csrf-token",
+  cookieOptions: {
+    secure : false,
+  },
   size: 64,
-  getTokenFromRequest: (req) => req.headers["_csrf"],
+  getTokenFromRequest: (req) => req.headers["x-csrf-token"],
 });
 
 export { generateToken, doubleCsrfProtection };
