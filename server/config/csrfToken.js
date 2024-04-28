@@ -4,7 +4,7 @@ const { generateToken, doubleCsrfProtection } = doubleCsrf({
   getSecret: () => "Secret",
   cookieName: "__Secure-psifi.x-csrf-token",
   cookieOptions: {
-    secure : false,
+    secure : true,
   },
   size: 64,
   getTokenFromRequest: (req) => req.headers["x-csrf-token"],
