@@ -22,7 +22,7 @@ const app = express();
 // cors setup
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://think-it-write-it.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     credentials: true,
   })
