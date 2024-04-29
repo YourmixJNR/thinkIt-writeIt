@@ -76,6 +76,7 @@ export const login = async (req, res) => {
       domain: ".vercel.app",
       path: "/",
     });
+    res.send();
 
     res.json({ user: filterUser, message: "Login Successfully" });
   } catch (err) {
