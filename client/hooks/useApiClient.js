@@ -24,7 +24,27 @@ export const useApiClient = () => {
         }
     });
 
-
+    apiClient.interceptors.response.use(function (response) {
+        // Do something with response data
+        return response;
+    }, function (error) {
+        // Do something with response error
+        let res = error.response;
+        if (res.status === 401 && res.config && !res.config.__isRetryRequest) {
+            return new Promise((resolve, reject) => {
+                axios.get(`${API_ENDPOINT}/auth/logout`).then((data) => {
+                    console.log("/401 error > logout");
+                    StorageServices.removeUser();
+                    router.push("/auth/login");
+                    resolve(data);
+                }).catch((err) => {
+                    console.log("AXIOS INTERCEPTORS ERR", err);
+                    reject(err);
+                });
+            });
+        }
+        return Promise.reject(error);
+    });
 
     return apiClient;
 };
