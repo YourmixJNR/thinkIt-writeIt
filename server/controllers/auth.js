@@ -73,7 +73,7 @@ res.cookie("token", token, {
 	httpOnly: true,
 	secure: true,
 	sameSite: "None",
-	domain: "think-it-write-it.vercel.app",
+	domain: ".vercel.app",
 	path: "/",
 });
 
