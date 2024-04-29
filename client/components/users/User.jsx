@@ -10,7 +10,7 @@ const User = () => {
   const { user, isLoading } = state;
 
   useEffect(() => {
-    if (isLoading || !user) {
+    if (!user) {
       getCurrentUser();
     }
   }, []);
