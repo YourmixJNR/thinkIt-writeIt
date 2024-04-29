@@ -7,8 +7,8 @@ import PasswordInput from "../ui/inputs/PasswordInput";
 import { AuthContext } from "../../context/auth/authContext";
 
 const LoginForm = () => {
-  const [email, setEmail] = useState("idan@gmail.com");
-  const [password, setPassword] = useState("password1");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
