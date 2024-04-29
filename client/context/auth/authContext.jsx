@@ -22,18 +22,8 @@ export const AuthProvider = ({ children }) => {
   const { success, error } = useCustomToast();
   const router = useRouter();
 
-  const getCsrfToken = async () => {
-    try {
-      const { data } = await apiClient.get(`/csrf-token`);
-      StorageServices.setCsrfToken(data.csrfToken);
-    } catch (error) {
-      console.error("Error fetching CSRF token:", error);
-    }
-  };
-
   const registerUser = async ({ email, password }) => {
     try {
-      await getCsrfToken();
       dispatch({
         type: "REGISTER",
         isLoading: true,
@@ -60,7 +50,6 @@ export const AuthProvider = ({ children }) => {
 
   const loginUser = async ({ email, password }) => {
     try {
-      await getCsrfToken();
       dispatch({
         type: "LOGIN",
         isLoading: true,
@@ -107,7 +96,6 @@ export const AuthProvider = ({ children }) => {
       value={{
         state,
         dispatch,
-        getCsrfToken,
         registerUser,
         loginUser,
         logoutUser,

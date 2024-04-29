@@ -24,22 +24,13 @@ export const useApiClient = () => {
         }
     });
 
-    apiClient.interceptors.request.use(function (request) {
+    apiClient.interceptors.request.use(function (config) {
         // Do something before request is sent
-        const fetchCsrfToken = StorageServices.getCsrfToken()
-        if (fetchCsrfToken) {
-            request.headers = { ...request.headers, "x-csrf-token": fetchCsrfToken }
-        } else {
-            request.headers = {
-              ...request.headers,
-              "x-csrf-token": request?.headers?._csrf || '',
-            }
-          }
-        return request;
-    }, function (error) {
+        return config;
+      }, function (error) {
         // Do something with request error
         return Promise.reject(error);
-    });
+      });
 
     apiClient.interceptors.response.use(function (response) {
         // Do something with response data

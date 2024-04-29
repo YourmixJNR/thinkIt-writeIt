@@ -9,7 +9,7 @@ const Index = () => {
         <link rel="icon" type="image/png" href="/favicon.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="siteUrl" />
+        <link rel="canonical" href="https://think-it-write-it.vercel.app/" />
         <meta name="keywords" content="Writers" />
         <meta name="robots" content="index, follow" />
         <meta
@@ -21,18 +21,30 @@ const Index = () => {
           property="og:description"
           content="thinkIt-writeIt: We Provide Solutions for Writers."
         />
-        <meta property="og:url" content="siteUrl" />
-        <meta property="og:image" content="/favicon.png" />
+        <meta
+          property="og:url"
+          content="https://think-it-write-it.vercel.app/"
+        />
+        <meta
+          property="og:image"
+          content="https://think-it-write-it.vercel.app/favicon.png"
+        />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@yourmixjnr" />
         <meta name="twitter:creator" content="@yourmixjnr" />
         <meta name="twitter:title" content="thinkIt-writeIt for Writers" />
-        <meta name="twitter:url" content="siteUrl" />
+        <meta
+          name="twitter:url"
+          content="https://think-it-write-it.vercel.app/"
+        />
         <meta
           name="twitter:description"
           content="thinkIt-writeIt: We Provide Solutions for Writers."
         />
-        <meta name="twitter:image" content="/favicon.png" />
+        <meta
+          name="twitter:image"
+          content="https://think-it-write-it.vercel.app/favicon.png"
+        />
         <title>thinkIt-writeIt for Writers</title>
       </Head>
       <Layout>

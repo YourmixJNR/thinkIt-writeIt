@@ -1,13 +1,11 @@
 import { createContext, useContext, useState } from "react";
 import { useApiClient } from "../../hooks/useApiClient";
-import { AuthContext } from "../auth/authContext";
 import { useCustomToast } from "../../hooks/useCustomToast";
 
 export const SubscribeContext = createContext();
 
 export const SubscribeProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const { getCsrfToken } = useContext(AuthContext);
 
   const { success, error } = useCustomToast();
 
@@ -15,7 +13,6 @@ export const SubscribeProvider = ({ children }) => {
 
   const subscribe = async ({ email }) => {
     try {
-      await getCsrfToken();
       setIsLoading(true);
       const { data } = await apiClient.post("/subscribe", { email });
       success(data.message);

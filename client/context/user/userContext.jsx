@@ -1,6 +1,6 @@
 import userReducer from "../user/userReducer";
 import { useApiClient } from "../../hooks/useApiClient";
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useReducer } from "react";
 import { useCustomToast } from "../../hooks/useCustomToast";
 
 export const UserContext = createContext();
