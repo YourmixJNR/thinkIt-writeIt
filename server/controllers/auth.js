@@ -69,13 +69,13 @@ export const login = async (req, res) => {
       "-password -role -_id -createdAt -updatedAt -__v"
     );
 
-res.cookie("token", token, {
-	httpOnly: true,
-	secure: true,
-	sameSite: "None",
-	domain: ".vercel.app",
-	path: "/",
-});
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+      domain: ".vercel.app",
+      path: "/",
+    });
 
     res.json({ user: filterUser, message: "Login Successfully" });
   } catch (err) {
