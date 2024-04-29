@@ -85,7 +85,6 @@ export const login = async (req, res) => {
 export const logout = (req, res) => {
   try {
     res.clearCookie("token");
-    // res.clearCookie("_csrf");
     return res.status(200).json({ message: "Logged Out" });
   } catch (err) {
     console.log(err);

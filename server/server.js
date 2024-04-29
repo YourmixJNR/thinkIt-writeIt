@@ -6,11 +6,10 @@ import morgan from "morgan";
 import { fileURLToPath } from "url";
 import path from "path";
 import { configDotenv } from "dotenv";
-import { doubleCsrfProtection } from "./config/csrfToken.js";
+import { processEnv } from "./lib/processEnv.js";
 import indexRouter from "./routes/index.js";
 import authRouter from "./routes/auth.js";
 import userRouter from "./routes/user.js";
-import csrfRouter from "./routes/csrf.js";
 import subscriberRouter from "./routes/subscriber.js";
 import profileRouter from "./routes/profile.js";
 
@@ -22,7 +21,7 @@ const app = express();
 // cors setup
 app.use(
   cors({
-    origin: "https://think-it-write-it.vercel.app",
+    origin: `${processEnv.ORIGIN_URL}`,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     credentials: true,
   })
@@ -45,10 +44,6 @@ app.use(express.static(path.join(__dirname, ".", "public")));
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(cookieParser());
-app.use(doubleCsrfProtection);
-
-// protected routes with csrf-token
-app.use("/api", csrfRouter);
 
 // routes
 app.use("/api", indexRouter);
@@ -58,6 +53,6 @@ app.use("/api/", subscriberRouter);
 app.use("/api/", profileRouter);
 
 // port
-const port = process.env.PORT || 8000;
+const port = `${processEnv.PORT}` || 8000;
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));

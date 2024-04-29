@@ -1,9 +1,10 @@
+import { processEnv } from "../lib/processEnv.js";
 import Subscriber from "../models/subscriber.js";
 import { generateEmailToken, verifyEmailToken } from "../utils/jwt.js";
 import { sendMail } from "../utils/mail.js";
 
-const serverUrl = process.env.SERVER_URL;
-const clientUrl = process.env.CLIENT_URL;
+const serverUrl = processEnv.SERVER_URL;
+const clientUrl = processEnv.CLIENT_URL;
 
 export const subscribe = async (req, res) => {
   try {
