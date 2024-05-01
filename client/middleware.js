@@ -2,8 +2,8 @@ import { NextResponse } from "next/server";
 
 export async function middleware(request) {
   const currentUser =
-    request.headers.authorization?.split(" ")[1] ||
-    request.cookies.get("token")?.value;
+    // request.headers.authorization?.split(" ")[1] ||
+    request.cookies.get("token");
 
   const publicRoutes = ["/", "/auth/register", "/auth/login"];
   const protectedRoutes = ["/user"];

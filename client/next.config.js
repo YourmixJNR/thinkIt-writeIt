@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+const API_ENDPOINT = process.env.SERVER_API_URL || ""
 
 const nextConfig = {
   images: {
@@ -11,6 +12,14 @@ const nextConfig = {
       },
     ],
   },
+  async rewrites () {
+    return [
+      {
+        source: "/api/:path*",
+        destination: `${API_ENDPOINT}/:path*`,
+      }
+    ]
+  }
 }
 
 export default nextConfig
