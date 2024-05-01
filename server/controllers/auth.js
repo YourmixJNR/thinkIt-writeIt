@@ -69,6 +69,7 @@ export const login = async (req, res) => {
       "-password -role -_id -createdAt -updatedAt -__v"
     );
 
+    //set cookie
     res.cookie("token", token, {
       httpOnly: true,
       secure: true,
@@ -76,9 +77,11 @@ export const login = async (req, res) => {
       domain: ".vercel.app",
       path: "/",
     });
-    res.send();
 
-    res.json({ user: filterUser, message: "Login Successfully" });
+    return res
+      .header("Authorization", `Bearer ${token}`)
+      .status(200)
+      .json({ user: filterUser, message: "Login Successfully", token });
   } catch (err) {
     console.log(err);
     return res.status(400).json({

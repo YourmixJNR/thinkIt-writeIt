@@ -61,9 +61,10 @@ export const AuthProvider = ({ children }) => {
         isLoggedIn: true,
       });
       StorageServices.setUser(JSON.stringify(data.user));
+      StorageServices.setAuthToken((data.token));
       await getCurrentUser();
-      success(data.message);
       router.push("/user");
+      success(data.message);
     } catch (err) {
       console.log(err);
       error(err.response.data.error);
@@ -78,10 +79,10 @@ export const AuthProvider = ({ children }) => {
     dispatch({
       type: "LOGOUT",
     });
-    await apiClient.get("/auth/logout");
+    await apiClient.get("auth/logout");
     router.push("/auth/login");
+    StorageServices.removeAuthToken();
     StorageServices.removeUser();
-    StorageServices.removeCsrfToken();
   };
 
   useEffect(() => {
