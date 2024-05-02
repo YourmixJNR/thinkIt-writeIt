@@ -36,7 +36,6 @@ export const useApiClient = () => {
                 authorization: request?.headers?.authorization || '',
             }
         }
-
         return request
     })
 
