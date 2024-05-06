@@ -1,6 +1,5 @@
 import express from "express";
 import cors from "cors";
-import startDb from "./config/db.js";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import { fileURLToPath } from "url";
@@ -27,9 +26,6 @@ app.use(
   })
 );
 
-// db
-startDb();
-
 // view engine setup
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -52,7 +48,4 @@ app.use("/api/", userRouter);
 app.use("/api/", subscriberRouter);
 app.use("/api/", profileRouter);
 
-// port
-const port = `${processEnv.PORT}` || 8000;
-
-app.listen(port, () => console.log(`Server is running on port ${port}`));
+export default app
