@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start:dev": "nodemon index.js",
+    "start": "node index.js",
+    "test": "jest --detectOpenHandles"
   },
   "type": "module",
   "keywords": [],
