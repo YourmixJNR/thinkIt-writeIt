@@ -42,7 +42,7 @@ app.use(morgan("dev"));
 app.use(cookieParser());
 
 // routes
-app.use("/api", indexRouter);
+app.use("/", indexRouter);
 app.use("/api/auth/", authRouter);
 app.use("/api/", userRouter);
 app.use("/api/", subscriberRouter);
