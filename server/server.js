@@ -6,7 +6,6 @@ import { fileURLToPath } from "url";
 import path from "path";
 import { configDotenv } from "dotenv";
 import { processEnv } from "./lib/processEnv.js";
-import indexRouter from "./routes/index.js";
 import authRouter from "./routes/auth.js";
 import userRouter from "./routes/user.js";
 import subscriberRouter from "./routes/subscriber.js";
@@ -42,10 +41,25 @@ app.use(morgan("dev"));
 app.use(cookieParser());
 
 // routes
-app.use("/", indexRouter);
 app.use("/api/auth/", authRouter);
 app.use("/api/", userRouter);
 app.use("/api/", subscriberRouter);
 app.use("/api/", profileRouter);
 
-export default app
+// Home Route
+app.get("/", (req, res) => {
+  return res.status(200).json({
+    message: "Welcome to the API",
+    data: null,
+  });
+});
+
+// Undefined route
+app.get("*", (req, res) => {
+  return res.status(404).send({
+    message: "Route not found",
+    data: false,
+  });
+});
+
+export default app;
