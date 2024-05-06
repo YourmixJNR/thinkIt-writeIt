@@ -1,11 +1,13 @@
 import express from "express";
 import cors from "cors";
+import startDb from "./config/db.js";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import { fileURLToPath } from "url";
 import path from "path";
 import { configDotenv } from "dotenv";
 import { processEnv } from "./lib/processEnv.js";
+import indexRouter from "./routes/index.js";
 import authRouter from "./routes/auth.js";
 import userRouter from "./routes/user.js";
 import subscriberRouter from "./routes/subscriber.js";
@@ -25,6 +27,9 @@ app.use(
   })
 );
 
+// db
+startDb();
+
 // view engine setup
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -41,25 +46,15 @@ app.use(morgan("dev"));
 app.use(cookieParser());
 
 // routes
+app.use("/", indexRouter);
 app.use("/api/auth/", authRouter);
 app.use("/api/", userRouter);
 app.use("/api/", subscriberRouter);
 app.use("/api/", profileRouter);
 
-// Home Route
-app.get("/", (req, res) => {
-  return res.status(200).json({
-    message: "Welcome to the API",
-    data: null,
-  });
-});
+// port
+const port = `${processEnv.PORT}` || 8000;
 
-// Undefined route
-app.get("*", (req, res) => {
-  return res.status(404).send({
-    message: "Route not found",
-    data: false,
-  });
-});
+app.listen(port, () => console.log(`Server is running on port ${port}`));
 
-export default app;
+export {app}
