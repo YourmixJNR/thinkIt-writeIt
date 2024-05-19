@@ -13,7 +13,7 @@ const User = () => {
     if (!user) {
       getCurrentUser();
     }
-  }, []);
+  }, [user]);
 
   if (isLoading || !user) {
     return (
