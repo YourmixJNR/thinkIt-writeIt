@@ -37,8 +37,17 @@ export const updateUser = async (req, res) => {
         error: "Fields can't be empty",
       });
     }
+
+    const usernameExists = await User.findOne({ username });
+    if (usernameExists && usernameExists._id.toString() !== id) {
+      return res.status(400).json({
+        message: "Bad request",
+        error: "Username already taken",
+      });
+    }
+
     await User.findOneAndUpdate(
-      { _id : id },
+      { _id: id },
       { username, name, bio, favoriteContent, hireable, socialMedia },
       {
         new: true,

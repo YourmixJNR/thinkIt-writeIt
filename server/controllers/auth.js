@@ -66,7 +66,7 @@ export const login = async (req, res) => {
     const token = generateToken(user._id);
     // user.password = undefined
     const filterUser = await User.findOne({ email }).select(
-      "-password -role -_id -createdAt -updatedAt -__v"
+      "-password -role -_id -createdAt -updatedAt -__v -socialMedia"
     );
 
     //set cookie
@@ -75,11 +75,9 @@ export const login = async (req, res) => {
       secure: true,
       sameSite: "None",
       partitioned: true,
-      path: "/",
     });
 
     return res
-      .header("Authorization", `Bearer ${token}`)
       .status(200)
       .json({ user: filterUser, message: "Login Successfully", token });
   } catch (err) {
