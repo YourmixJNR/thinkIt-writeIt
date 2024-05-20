@@ -1,8 +1,10 @@
-import Home from "../components/Home";
-import Layout from "../components/layout";
+import React from "react";
+import SessionLayout from "../components/layout/SessionLayout";
+import { Flex, Heading, Link, Text } from "@chakra-ui/react";
+import NextLink from "next/link";
 import Head from "next/head";
 
-const Index = () => {
+const Custom404 = () => {
   return (
     <>
       <Head>
@@ -21,10 +23,7 @@ const Index = () => {
           property="og:description"
           content="thinkIt-writeIt: We Provide Solutions for Writers."
         />
-        <meta
-          property="og:url"
-          content="https://thinkit-writeit.vercel.app/"
-        />
+        <meta property="og:url" content="https://thinkit-writeit.vercel.app/" />
         <meta
           property="og:image"
           content="https://thinkit-writeit.vercel.app/favicon.png"
@@ -45,13 +44,47 @@ const Index = () => {
           name="twitter:image"
           content="https://thinkit-writeit.vercel.app/favicon.png"
         />
-        <title>thinkIt-writeIt for Writers</title>
+        <title>404 | Page Not Found</title>
       </Head>
-      <Layout>
-        <Home />
-      </Layout>
+      <SessionLayout>
+        <Flex
+          as={"section"}
+          flexDir={"column"}
+          justify={"center"}
+          align={"center"}
+          mb={"2rem"}
+          minH={"100vh"}
+        >
+          <Heading as={"h1"} fontSize={{ base: "10rem", md: "15rem" }}>
+            404
+          </Heading>
+          <Text
+            fontSize={"1.25rem"}
+            textAlign={"center"}
+            maxW={"508px"}
+            mb={"2rem"}
+          >
+            The page you’re looking for can’t be found. It may have been
+            deleted, moved, or never existed.
+          </Text>
+          <Link
+            as={NextLink}
+            href="/"
+            bg={"customYellow"}
+            p={2}
+            textDecor={"none"}
+            fontSize={"1rem"}
+            fontWeight={"semibold"}
+            textColor={"white"}
+            borderRadius={"0.2rem"}
+            colorScheme="none"
+          >
+            Go to home
+          </Link>
+        </Flex>
+      </SessionLayout>
     </>
   );
 };
 
-export default Index;
+export default Custom404;

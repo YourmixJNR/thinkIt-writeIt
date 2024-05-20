@@ -12,7 +12,7 @@ const Login = () => {
         <meta property="og:type" content="website" />
         <link
           rel="canonical"
-          href="https://think-it-write-it.vercel.app/login"
+          href="https://thinkit-writeit.vercel.app/login"
         />
         <meta name="keywords" content="Writers" />
         <meta name="robots" content="noindex" />
@@ -24,11 +24,11 @@ const Login = () => {
         />
         <meta
           property="og:url"
-          content="https://think-it-write-it.vercel.app/login"
+          content="https://thinkit-writeit.vercel.app/login"
         />
         <meta
           property="og:image"
-          content="https://think-it-write-it.vercel.app/favicon.png"
+          content="https://thinkit-writeit.vercel.app/favicon.png"
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@yourmixjnr" />
@@ -36,7 +36,7 @@ const Login = () => {
         <meta name="twitter:title" content="thinkIt-writeIt for Writers" />
         <meta
           name="twitter:url"
-          content="https://think-it-write-it.vercel.app/login"
+          content="https://thinkit-writeit.vercel.app/login"
         />
         <meta
           name="twitter:description"
@@ -44,7 +44,7 @@ const Login = () => {
         />
         <meta
           name="twitter:image"
-          content="https://think-it-write-it.vercel.app/favicon.png"
+          content="https://thinkit-writeit.vercel.app/favicon.png"
         />
         <title>Log in | thinkIt-writeIt</title>
       </Head>

@@ -1,11 +1,12 @@
 import apiServer from "../libs/apiServer";
 import Profile from "../components/profile/Profile";
-import ProfileLayout from "../components/profile/layout";
+import SessionLayout from "../components/layout/SessionLayout";
 import Head from "next/head";
+import Custom404 from "./404";
 
 const UserProfile = ({ profile }) => {
   if (!profile) {
-    return <div>User not found</div>;
+    return <Custom404/>;
   }
 
   const pageTitle = `${profile.name} (@${profile.username}) | thinkIt-writeIt`;
@@ -16,6 +17,10 @@ const UserProfile = ({ profile }) => {
         <link rel="icon" type="image/png" href="/favicon.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta property="og:type" content="website" />
+        <link
+          rel="canonical"
+          href={`https://thinkit-writeit.vercel.app/${profile.username}`}
+        />
         <meta name="keywords" content="Writer profile" />
         <meta name="robots" content="index, follow" />
         <meta name="description" content="thinkIt-writeIt: Writer profile" />
@@ -24,10 +29,13 @@ const UserProfile = ({ profile }) => {
           property="og:description"
           content="thinkIt-writeIt: Writer profile"
         />
-        <meta property="og:url" content="siteUrl" />
+        <meta
+          property="og:url"
+          content={`https://thinkit-writeit.vercel.app/${profile.username}`}
+        />
         <meta
           property="og:image"
-          content="https://think-it-write-it.vercel.app/favicon.png"
+          content="https://thinkit-writeit.vercel.app/favicon.png"
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@yourmixjnr" />
@@ -35,7 +43,7 @@ const UserProfile = ({ profile }) => {
         <meta name="twitter:title" content="thinkIt-writeIt for Writers" />
         <meta
           name="twitter:url"
-          content="https://think-it-write-it.vercel.app"
+          content={`https://thinkit-writeit.vercel.app/${profile.username}`}
         />
         <meta
           name="twitter:description"
@@ -43,13 +51,13 @@ const UserProfile = ({ profile }) => {
         />
         <meta
           name="twitter:image"
-          content="https://think-it-write-it.vercel.app/favicon.png"
+          content="https://thinkit-writeit.vercel.app/favicon.png"
         />
         <title>{pageTitle}</title>
       </Head>
-      <ProfileLayout>
+      <SessionLayout>
         <Profile profile={profile} />
-      </ProfileLayout>
+      </SessionLayout>
     </>
   );
 };

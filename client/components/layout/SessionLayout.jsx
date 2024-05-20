@@ -1,8 +1,9 @@
-import Layout from "../../layout";
-import UserLayout from "../../users/layout";
+import React from "react";
+import Layout from ".";
+import UserLayout from "../users/layout";
 import { useSession } from "next-auth/react";
 
-const ProfileLayout = ({ children }) => {
+const SessionLayout = ({ children }) => {
   const { data: session } = useSession();
 
   if (!session) {
@@ -12,4 +13,4 @@ const ProfileLayout = ({ children }) => {
   return <UserLayout>{children}</UserLayout>;
 };
 
-export default ProfileLayout;
+export default SessionLayout;
