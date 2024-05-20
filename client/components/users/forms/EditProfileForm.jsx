@@ -11,6 +11,8 @@ const EditProfileForm = () => {
   const [bio, setBio] = useState(user?.bio || "");
   const [content, setContent] = useState(user?.favoriteContent || "");
 
+  const username = user?.username ;
+
   const handleContentChange = (e) => {
     setContent(e.target.value);
   };
@@ -22,6 +24,7 @@ const EditProfileForm = () => {
     e.preventDefault();
 
     const updateData = {
+      username: username,
       bio: bio,
       favoriteContent: content,
     };

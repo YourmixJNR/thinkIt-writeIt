@@ -25,12 +25,12 @@ export const updateUser = async (req, res) => {
     const { username, name, bio, favoriteContent, hireable, socialMedia } =
       req.body;
     if (
-      !username &&
+      !socialMedia &&
       !name &&
       !bio &&
       !favoriteContent &&
       !hireable &&
-      !socialMedia
+      !username
     ) {
       return res.status(400).json({
         message: "Bad request",
