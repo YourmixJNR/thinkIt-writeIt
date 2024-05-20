@@ -10,14 +10,15 @@ const Profile = ({ profile }) => {
       <Flex
         gap={{
           base: "0rem",
-          lg: "2rem",
+          lg: "10rem",
         }}
         flexDirection={{
           base: "column",
           lg: "row",
         }}
+        justify={"center"}
       >
-        <Box width={"100%"}>
+        <Box>
           <Flex
             flexDir={"column"}
             alignItems={{
@@ -119,7 +120,7 @@ const Profile = ({ profile }) => {
             </Box>
           </Box>
         </Box>
-        <Box width={"100%"}>
+        <Box>
           <Box>
             {profile?.bio && (
               <Box>
